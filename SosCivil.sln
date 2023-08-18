@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33712.159
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SosCivil.Api", "SosCivil.Api\SosCivil.Api.csproj", "{8332ED80-9398-4ABF-B854-A8E4E148C070}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SosCivil.Api", "SosCivil.Api\SosCivil.Api.csproj", "{8332ED80-9398-4ABF-B854-A8E4E148C070}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SosCivil.Mvc", "SosCivil.Mvc\SosCivil.Mvc.csproj", "{2CA7FB26-306C-48DA-87B1-6EEF151F2483}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{8332ED80-9398-4ABF-B854-A8E4E148C070}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8332ED80-9398-4ABF-B854-A8E4E148C070}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8332ED80-9398-4ABF-B854-A8E4E148C070}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CA7FB26-306C-48DA-87B1-6EEF151F2483}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CA7FB26-306C-48DA-87B1-6EEF151F2483}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CA7FB26-306C-48DA-87B1-6EEF151F2483}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CA7FB26-306C-48DA-87B1-6EEF151F2483}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
