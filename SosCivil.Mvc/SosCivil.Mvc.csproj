@@ -10,4 +10,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.21" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SosCivil.Core\SosCivil.Core.csproj" />
+  </ItemGroup>
+
 </Project>
