@@ -30,8 +30,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Contexts\" />
-    <Folder Include="Data\Entities\" />
     <Folder Include="Data\Repositories\" />
     <Folder Include="Models\" />
     <Folder Include="Services\" />

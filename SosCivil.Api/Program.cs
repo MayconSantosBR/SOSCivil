@@ -1,3 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using SosCivil.Api.Data.Contexts;
+
+var appConfig = new AppConfig();
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -6,7 +10,7 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddDbContext<MainContext>(options => options.UseNpgsql(appConfig.GetSetting("ConnectionStrings:SosCivil")));
 //Add logger console
 builder.Logging.AddConsole().AddDebug().SetMinimumLevel(LogLevel.Information);
 

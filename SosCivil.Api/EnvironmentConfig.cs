@@ -1,11 +1,10 @@
-﻿namespace SosCivil.Api
+﻿using Microsoft.Extensions.Configuration;
+
+namespace SosCivil.Api
 {
     public static class EnvironmentConfig
     {
         //Add here the main options, like DbContext connection string.
-        public static class Context
-        {
-            public static string Main = "teste@teste";
-        }
+        //public static string Main = "Server = 127.0.0.1;Port=5432;Database=SosCivil;User Id=postgres;Password=";
     }
 }
