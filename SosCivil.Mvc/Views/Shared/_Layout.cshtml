@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - SosCivil.Mvc</title>
+    <title>@ViewData["Title"] - SOSCivil</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/SosCivil.Mvc.styles.css" asp-append-version="true" />
@@ -11,34 +11,59 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@10..48&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SOS CIVIL</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                    </ul>
-                </div>
+    <header style="margin-bottom: 5rem!important;">
+        <div class="nav-bar mb-5">
+            <div id="menuToggle" class="toggle-menu active">
+                <i class="las la-bars fontsize-20"></i>
             </div>
-        </nav>
+        </div>
+
+        <div id="sideMenu" class="side-menu">
+
+            <div class="menu-items">
+                <a asp-controller="Home" asp-action="Index" class="item"><i class="las la-home me-2 fontsize-20"></i>Home</a>
+                <a asp-controller="Documento" asp-action="Index" class="item"><i class="las la-folder-open me-2 fontsize-20"></i>Documentos</a>
+                <a asp-controller="Entrega" asp-action="Index" class="item"><i class="las la-truck me-2 fontsize-20"></i>Entregas</a>
+            </div>
+        </div>
     </header>
+
+
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="pb-5">
             @RenderBody()
         </main>
     </div>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        const toggleMenu = document.getElementById("menuToggle");
+        const sideMenu = document.getElementById("sideMenu");
+        const content = document.querySelector(".content");
+        const bars = document.querySelectorAll(".bar");
+        const menuItems = document.querySelectorAll(".menu-items .item");
+
+        toggleMenu.addEventListener("click", () => {
+            sideMenu.classList.toggle("resize");
+            content.classList.toggle("resize");
+            toggleMenu.classList.toggle("active");
+
+            bars.forEach((bar) => {
+                bar.classList.add("anim-bar");
+                setTimeout(() => {
+                    bar.classList.remove("anim-bar");
+                }, 1000);
+            });
+        });
+
+    </script>
 </body>
 </html>
+
+

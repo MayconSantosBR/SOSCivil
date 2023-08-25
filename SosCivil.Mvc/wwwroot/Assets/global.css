@@ -1,23 +1,266 @@
-﻿html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
+﻿body{
+    padding: 0;
+    margin: 0;
+}
+
+* {
     margin: 0;
     padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    scroll-behavior: smooth;
+    scrollbar-color: var(--primaryColor) var(--nav);
 }
+
+.fontsize-16{
+    font-size: 16px;
+}
+
+.fontsize-20 {
+    font-size: 20px;
+}
+
+.fontsize-24 {
+    font-size: 24px;
+}
+
+.fontsize-28 {
+    font-size: 28px;
+}
+
 h1, h2, h3, h4, h5, h6, p, a {
-    font-family: 'Bricolage Grotesque', sans-serif;
+    font-family: "Poppins", sans-serif;
+}
+:root {
+    --primaryColor: #fca311;
+    --secondaryColor: #14213d;
+    --primaryTextColor: #14213d;
+    --secondaryTextColor: #fca311;
+    --nav: #e5e5e5;
+    --darkNavBg: #e5e5e5;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    background: linear-gradient(#212121, #323232);
+    box-shadow: inset 0 0 0px 1px var(--primaryColor);
+    width: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: var(--primaryColor);
+    box-shadow: inset 0 0 1px 1px var(--secondaryTextColor);
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient( -45deg, var(--primaryColor), var(--secondaryColor) );
+    }
+
+    ::-webkit-scrollbar-thumb:active {
+        background: linear-gradient( 45deg, var(--secondaryColor), var(--primaryColor) );
+    }
+.nav-bar {
+    width: 100%;
+    height: 35px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--nav);
+    padding: 2px 25px;
+    display: flex;
+    align-items: center;
+    box-shadow: inset 0 1px 0px var(--primaryColor), 0 2px 0 var(--primaryColor), 0 3px 12px rgba(0, 0, 0, 0.4);
+    z-index: 99;
+}
+
+    .nav-bar .toggle-menu {
+        width: 26px;
+        height: 26px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-radius: 3px;
+    }
+
+.toggle-menu.active {
+    background-color: var(--primaryColor);
+}
+
+.nav-bar .toggle-menu:hover {
+    background-color: var(--primaryColor);
+}
+
+.anim-bar {
+    animation: animBar 0.5s ease;
+}
+
+@keyframes animBar {
+    0% {
+        width: 18px;
+    }
+
+    15% {
+        width: 12px;
+    }
+
+    30% {
+        width: 25px;
+    }
+
+    45% {
+        width: 15px;
+    }
+
+    60% {
+        width: 20px;
+    }
+
+    75% {
+        width: 16px;
+    }
+
+    100% {
+        width: 18px;
+    }
+}
+
+
+
+.side-menu {
+    width: 0;
+    height: calc(100% - 33px);
+    background-color: var(--primaryColor);
+    border-right: 0px solid transparent;
+    overflow: hidden;
+    top: 40px;
+    left: 0;
+    padding-top: 15px;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    overscroll-behavior: contain;
+    overflow-y: auto;
+    padding-bottom: 20px;
+    top: 35px;
+    transition: left 0.4s ease, border-radius 0.3s ease, clip-path 0.5s cubic-bezier(0.81, 0.51, 0.09, 1.05);
+    -webkit-clip-path: circle(0% at 0 0);
+    clip-path: circle(0% at 0 0);
+}
+
+    .side-menu.resize {
+        width: 250px;
+        border-right: 2px solid var(--primaryColor);
+        background-color: var(--darkNavBg);
+        -webkit-clip-path: circle(141.4% at 0 0);
+        clip-path: circle(141.4% at 0 0);
+        transition: background-color 0.5s ease, border-radius 0.3s ease, clip-path 0.5s cubic-bezier(0.81, 0.51, 0.09, 1.05);
+    }
+
+    .side-menu .menu-items {
+        padding: 0px 15px;
+    }
+
+    .side-menu a {
+        position: relative;
+        text-decoration: none;
+        color: var(--secondaryTextColor);
+        width: 100%;
+        height: 35px;
+        margin-top: 2px;
+        padding: 10px 20px;
+        border-radius: 35px;
+        display: flex;
+        align-items: center;
+        font-size: 16px;
+        font-weight: 600;
+        -webkit-user-select: none;
+        user-select: none;
+        overflow: hidden;
+        transition: color 0.2s ease;
+    }
+
+        .side-menu a:hover {
+            color: var(--secondaryColor);
+        }
+
+        .side-menu a.active {
+            color: var(--primaryTextColor);
+        }
+
+        .side-menu a::after {
+            content: "";
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            width: 0%;
+            height: 0px;
+            background-color: var(--nav);
+            border-radius: 35px;
+            transition: width 0.2s ease, height 0.3s ease, border-radius 0.3s ease, transform 0.2s ease, background-color 0.3s ease-in;
+            z-index: -1;
+        }
+
+        .side-menu a:hover::after {
+            width: 70%;
+            height: 10px;
+            border-radius: 0;
+            transform: skewX(-45deg);
+            background-color: var(--primaryColor);
+        }
+
+        .side-menu a.active::after {
+            background: linear-gradient( 45deg, var(--nav), var(--nav) );
+            width: 100%;
+            height: 100%;
+            bottom: 0px;
+            border-radius: 35px;
+            left: 0;
+            transform: skewX(0);
+            animation: active 0.2s ease;
+        }
+
+@keyframes active {
+    0% {
+        height: 6px;
+        width: 70%;
+        border-radius: 0;
+    }
+
+    70% {
+        height: 6px;
+        width: 100%;
+        border-radius: 35px;
+    }
+
+    75%, 100% {
+        height: 100%;
+    }
+}
+
+
+
+@media (max-width: 768px) {
+    .side-menu.resize {
+        width: 250px;
+        left: 0;
+        border-right: 2px solid var(--primaryColor);
+        background-color: var(--darkNavBg);
+        -webkit-clip-path: circle(141.4% at 0 0);
+        clip-path: circle(141.4% at 0 0);
+    }
+
+    .side-menu {
+        position: fixed;
+        left: -250px;
+        width: 0;
+        z-index: 99;
+    }
 }
