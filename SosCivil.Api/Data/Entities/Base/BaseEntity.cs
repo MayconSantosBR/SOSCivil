@@ -1,4 +1,4 @@
-﻿namespace SosCivil.Api.Data.Entities
+﻿namespace SosCivil.Api.Data.Entities.Base
 {
     public class BaseEntity
     {
