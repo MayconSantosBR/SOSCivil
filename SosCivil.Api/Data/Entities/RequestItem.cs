@@ -9,5 +9,6 @@ namespace SosCivil.Api.Data.Entities
         public long RequestId { get; set; }
         public Request Request { get; set; }
         public int Quantity { get; set; }
+        
     }
 }

@@ -1,4 +1,5 @@
 ﻿using SosCivil.Api.Data.Entities.Base;
+using SosCivil.Core.Data.Enums;
 
 namespace SosCivil.Api.Data.Entities
 {
@@ -7,7 +8,7 @@ namespace SosCivil.Api.Data.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public int Stock { get; set; }
+        public UnityOfMeasurement UnityOfMeasurement { get; set; }
 
-        //Precisa de mais informações
     }
 }

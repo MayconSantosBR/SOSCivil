@@ -1,11 +1,11 @@
-﻿using SosCivil.Core.Data.Enums;
+﻿using SosCivil.Api.Data.Entities.Base;
+using SosCivil.Core.Data.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace SosCivil.Api.Data.Entities
 {
-    public class Person
+    public class Person : BaseEntity
     {
-        [MaxLength(100)]
         public string Name { get; set; }
 
         public TipoPessoaEnum PersonType { get; set; }
