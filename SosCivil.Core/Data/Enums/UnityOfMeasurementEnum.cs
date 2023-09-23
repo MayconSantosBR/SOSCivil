@@ -2,7 +2,7 @@
 
 namespace SosCivil.Core.Data.Enums
 {
-    public enum UnityOfMeasurement
+    public enum UnityOfMeasurementEnum
     {
         [Description("Metros")]
         Meters = 0,

@@ -8,7 +8,7 @@ namespace SosCivil.Api.Data.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public int Stock { get; set; }
-        public UnityOfMeasurement UnityOfMeasurement { get; set; }
-
+        public UnityOfMeasurementEnum UnityOfMeasurement { get; set; }
+        public decimal QuantityWithUnit { get; set; }
     }
 }
