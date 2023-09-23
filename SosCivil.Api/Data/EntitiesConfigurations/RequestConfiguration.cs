@@ -23,7 +23,7 @@ namespace SosCivil.Api.Data.EntitiesConfigurations
                 .WithOne(ri => ri.Request)
                 .HasForeignKey(ri => ri.RequestId);
 
-            builder.ToTable("Requests")
+            builder.ToTable("Requests");
 
 
 
