@@ -9,7 +9,7 @@ namespace SosCivil.Api.Data.Entities
         public Occurrence Occurrence { get; set; }
         public StatusEnum Status { get; set; }
         public DateTime RequestDate { get; set; }
-        public DateTime DeliveryDate { get; set; }
+        public DateTime? DeliveryDate { get; set; }
         public ICollection<RequestItem> RequestItems { get; set; }
     }
 }

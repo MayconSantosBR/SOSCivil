@@ -5,6 +5,14 @@ namespace SosCivil.Api.Data.Contexts
 {
     public class MainContext : DbContext
     {
+        public DbSet<Establishment> Establishments { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<Occurrence> Occurrences  { get; set; }
+        public DbSet<Person> Persons { get; set; }
+        public DbSet<Request> Requests{ get; set; }
+        public DbSet<RequestItem> RequestItems{ get; set; }
+        public DbSet<User> Users{ get; set; }
+        
         public MainContext(DbContextOptions<MainContext> options) : base(options) { }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
