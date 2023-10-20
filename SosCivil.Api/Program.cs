@@ -1,3 +1,4 @@
+using DevIO.App.Configurations;
 using Microsoft.EntityFrameworkCore;
 using SosCivil.Api.Data.Contexts;
 
@@ -11,6 +12,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<MainContext>(options => options.UseNpgsql(appConfig.GetSetting("ConnectionStrings:SosCivil")));
+builder.Services.ResolveDependencies();
 //Add logger console
 builder.Logging.AddConsole().AddDebug().SetMinimumLevel(LogLevel.Information);
 
