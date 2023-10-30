@@ -299,8 +299,8 @@ a {
 
 #userImage {
     border-radius: 50%;
-    width: 40px;
-    height: 55px;
+    width: 45px;
+    height: 45px;
     position: relative;
     left: calc(90vw - 200px);
 }
