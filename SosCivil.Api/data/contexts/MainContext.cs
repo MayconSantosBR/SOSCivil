@@ -12,6 +12,7 @@ namespace SosCivil.Api.Data.Contexts
         public DbSet<Request> Requests{ get; set; }
         public DbSet<RequestItem> RequestItems{ get; set; }
         public DbSet<User> Users{ get; set; }
+        public DbSet<Cobrade> Cobrades { get; set; }
         
         public MainContext(DbContextOptions<MainContext> options) : base(options) { }
 

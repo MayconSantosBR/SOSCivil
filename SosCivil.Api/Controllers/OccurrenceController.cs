@@ -3,8 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace SosCivil.Api.Controllers
 {
+    [ApiController]
+    [Route("api/")]
     public class OccurrenceController : ControllerBase
     {
+        [Route("occurrences")]
+        [HttpGet]
         public async Task<ActionResult<Result>> All()
         {
             try

@@ -1,49 +1,49 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SosCivil.Api.Data.Contexts;
 using SosCivil.Api.Data.Entities.Base;
-using SosCivil.Api.Repositorys.Interfaces;
+using SosCivil.Api.Repositories.Interfaces;
 using System.Linq.Expressions;
 
-namespace SosCivil.Api.Repositorys
+namespace SosCivil.Api.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity, new()
     {
-        protected readonly MainContext Db;
-        protected readonly DbSet<TEntity> DbSet;
+        private readonly MainContext Db;
+        private readonly DbSet<TEntity> DbSet;
 
-        protected Repository(MainContext db)
+        public Repository(MainContext db)
         {
             Db = db;
             DbSet = db.Set<TEntity>();
         }
-        public async Task<IEnumerable<TEntity>> Buscar(Expression<Func<TEntity, bool>> predicate)
+        public async Task<IEnumerable<TEntity>> Get(Expression<Func<TEntity, bool>> predicate)
         {
             return await DbSet.AsNoTracking().Where(predicate).ToListAsync();
         }
 
-        public virtual async Task<TEntity> ObterPorId(long id)
+        public virtual async Task<TEntity> GetById(long id)
         {
-            return await DbSet.FirstOrDefaultAsync(x => x.Id == id);
+            return await DbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public virtual async Task<List<TEntity>> ObterTodos()
+        public virtual async Task<List<TEntity>> GetAll()
         {
-            return await DbSet.ToListAsync();
+            return await DbSet.AsNoTracking().ToListAsync();
         }
 
-        public virtual async Task Adicionar(TEntity entity)
+        public virtual async Task Create(TEntity entity)
         {
             DbSet.Add(entity);
             await SaveChanges();
         }
 
-        public virtual async Task Atualizar(TEntity entity)
+        public virtual async Task Update(TEntity entity)
         {
             DbSet.Update(entity);
             await SaveChanges();
         }
 
-        public virtual async Task Remover(long id)
+        public virtual async Task Remove(long id)
         {
             DbSet.Remove(new TEntity { Id = id });
             await SaveChanges();
