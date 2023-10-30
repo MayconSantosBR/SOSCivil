@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz@10..48&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue" rel="stylesheet">
     <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
 </head>
 <body>
@@ -19,7 +20,15 @@
             <div id="menuToggle" class="toggle-menu active">
                 <i class="las la-bars fontsize-20"></i>
             </div>
+            <div>
+                <a asp-controller="Home" asp-action="Index"><h1 id="projectTitle">SOSCIVIL</h1></a>
+            </div>
+            <div>
+                <a asp-controller="Home" asp-action="Index"><img id="userImage" src="./Assets/images/logoSosCivilSemFundo.png"/></a>
+            </div>
         </div>
+
+
 
         <div id="sideMenu" class="side-menu">
             <div class="menu-items">
@@ -29,6 +38,11 @@
                 <a asp-controller="Solicitacao" asp-action="Index" class="item"><i class="las la-file-alt me-2 fontsize-20"></i>Solicitações</a>
                 <a asp-controller="Entrega" asp-action="Index" class="item"><i class="las la-truck me-2 fontsize-20"></i>Entregas</a>
                 <a asp-controller="Desastre" asp-action="Index" class="item"><i class="las la-fire me-2 fontsize-20"></i>Desastres</a>
+                <a asp-controller="Cadastro" asp-action="Index" class="item"><i class="las la-fire me-2 fontsize-20"></i>Cadastro</a>
+                <a asp-controller="Cadastro" asp-action="Index" class="item"><i class="las la-fire me-2 fontsize-20"></i>Cadastro</a>
+                <a asp-controller="Cadastro" asp-action="Index" class="item"><i class="las la-fire me-2 fontsize-20"></i>Cadastro</a>
+                <a asp-controller="Cadastro" asp-action="Index" class="item"><i class="las la-fire me-2 fontsize-20"></i>Cadastro</a>
+                <a asp-controller="Cadastro" asp-action="Index" class="item"><i class="las la-fire me-2 fontsize-20"></i>Cadastro</a>
                 <a asp-controller="Cadastro" asp-action="Index" class="item"><i class="las la-fire me-2 fontsize-20"></i>Cadastro</a>
             </div>
         </div>

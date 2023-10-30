@@ -1,4 +1,4 @@
-﻿body{
+﻿body {
     padding: 0;
     margin: 0;
 }
@@ -9,10 +9,10 @@
     box-sizing: border-box;
     scrollbar-width: thin;
     scroll-behavior: smooth;
-    scrollbar-color: var(--primaryColor) var(--nav);
+    scrollbar-color: var(--secondaryColor) var(--secondaryColor);
 }
 
-.fontsize-16{
+.fontsize-16 {
     font-size: 16px;
 }
 
@@ -31,9 +31,15 @@
 h1, h2, h3, h4, h5, h6, p, a {
     font-family: "Poppins", sans-serif;
 }
+
+a {
+    text-decoration: none;
+}
+
 :root {
     --primaryColor: #fca311;
     --secondaryColor: #14213d;
+    --secondaryColor50: rgba(20, 33, 61, 0.7);
     --primaryTextColor: #14213d;
     --secondaryTextColor: #14213d;
     --nav: #e5e5e5;
@@ -46,10 +52,9 @@ h1, h2, h3, h4, h5, h6, p, a {
 }
 
 ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
     border-radius: 10px;
-    background: linear-gradient(#212121, #323232);
-    box-shadow: inset 0 0 0px 1px var(--primaryColor);
-    width: 2px;
+    background-color: var(--darkNavBg);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -59,15 +64,16 @@ h1, h2, h3, h4, h5, h6, p, a {
 }
 
     ::-webkit-scrollbar-thumb:hover {
-        background: linear-gradient( -45deg, var(--primaryColor), var(--secondaryColor) );
+        background: linear-gradient(to top, rgb(183 117 10), var(--primaryColor) 50%, rgb(183 117 10));
     }
 
     ::-webkit-scrollbar-thumb:active {
-        background: linear-gradient( 45deg, var(--secondaryColor), var(--primaryColor) );
+        background: linear-gradient( 45deg, var(--primaryColor), rgb(183 117 10) 50%, var(--primaryColor));
     }
+
 .nav-bar {
     width: 100%;
-    height: 35px;
+    height: 60px;
     position: absolute;
     top: 0;
     left: 0;
@@ -142,7 +148,7 @@ h1, h2, h3, h4, h5, h6, p, a {
     overflow: hidden;
     top: 40px;
     left: 0;
-    padding-top: 15px;
+    padding-top: 30px;
     position: fixed;
     display: flex;
     flex-direction: column;
@@ -171,11 +177,11 @@ h1, h2, h3, h4, h5, h6, p, a {
     .side-menu a {
         position: relative;
         text-decoration: none;
-        color: var(--secondaryTextColor);
+        color: var(--secondaryColor);
         width: 100%;
         height: 35px;
-        margin-top: 2px;
-        padding: 10px 20px;
+        margin: 20px;
+        padding: 30px 20px;
         border-radius: 35px;
         display: flex;
         align-items: center;
@@ -186,6 +192,10 @@ h1, h2, h3, h4, h5, h6, p, a {
         overflow: hidden;
         transition: color 0.2s ease;
     }
+
+        .side-menu a:first-child {
+            margin-top: 0;
+        }
 
         .side-menu a:hover {
             color: var(--secondaryColor);
@@ -198,8 +208,6 @@ h1, h2, h3, h4, h5, h6, p, a {
         .side-menu a::after {
             content: "";
             position: absolute;
-            left: 10px;
-            bottom: 10px;
             width: 0%;
             height: 0px;
             background-color: var(--nav);
@@ -210,7 +218,7 @@ h1, h2, h3, h4, h5, h6, p, a {
 
         .side-menu a:hover::after {
             width: 70%;
-            height: 10px;
+            height: 20px;
             border-radius: 0;
             transform: skewX(-45deg);
             background-color: var(--primaryColor);
@@ -249,18 +257,76 @@ h1, h2, h3, h4, h5, h6, p, a {
 
 @media (max-width: 768px) {
     .side-menu.resize {
-        width: 250px;
+        width: 100%;
         left: 0;
-        border-right: 2px solid var(--primaryColor);
+        border-right: 0;
         background-color: var(--darkNavBg);
         -webkit-clip-path: circle(141.4% at 0 0);
         clip-path: circle(141.4% at 0 0);
     }
 
     .side-menu {
+        margin-top: 10px;
         position: fixed;
         left: -250px;
         width: 0;
-        z-index: 99;
     }
+
+        .side-menu a {
+            font-size: 22px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: var(--primaryColor);
+    }
+
+    ::-webkit-scrollbar-thumb:active {
+        background: var(--primaryColor);
+    }
+}
+
+#projectTitle {
+    font-family: "Bebas Neue", sans-serif;
+    color: var(--secondaryColor);
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: -4px;
+    margin-left: 5vw;
+    cursor: pointer
+}
+
+#userImage {
+    border-radius: 50%;
+    width: 40px;
+    height: 55px;
+    position: relative;
+    left: calc(90vw - 200px);
+}
+
+.errorDiv {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.errorTitle {
+    font-family: "Bebas Neue", sans-serif;
+    color: var(--primaryColor);
+    font-size: 60px;
+    font-weight: 600;
+}
+
+.errorNumber {
+    color: var(--secondaryColor);
+}
+
+.errorMessage {
+    margin-top: 40px;
+    font-family: "Bebas Neue", sans-serif;
+    color: var(--primaryColor);
+    font-size: 30px;
 }
