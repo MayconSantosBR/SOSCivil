@@ -1,5 +1,6 @@
 ﻿using FluentResults;
 using Microsoft.AspNetCore.Mvc;
+using SosCivil.Api.Controllers.Base;
 using SosCivil.Api.Data.Entities;
 using SosCivil.Api.Services;
 
@@ -7,7 +8,7 @@ namespace SosCivil.Api.Controllers
 {
     [ApiController]
     [Route("api/")]
-    public class CobradeController : ControllerBase
+    public class CobradeController : SosCivilControllerBase
     {
         private readonly ICobradeService _cobradeService;
 
@@ -42,14 +43,6 @@ namespace SosCivil.Api.Controllers
             {
                 return BadRequest(Result.Fail(e.Message));
             }
-        }
-
-        private ActionResult ValidateServiceResponse<T>(Result<T> result)
-        {
-            if (result.IsSuccess)
-                return Ok(result.Value);
-            else
-                return BadRequest(result.Errors);
         }
     }
 }
