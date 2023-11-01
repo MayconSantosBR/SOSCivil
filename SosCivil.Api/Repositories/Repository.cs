@@ -16,7 +16,7 @@ namespace SosCivil.Api.Repositories
             Db = db;
             DbSet = db.Set<TEntity>();
         }
-        public async Task<IEnumerable<TEntity>> Get(Expression<Func<TEntity, bool>> predicate)
+        public virtual async Task<IEnumerable<TEntity>> Get(Expression<Func<TEntity, bool>> predicate)
         {
             return await DbSet.AsNoTracking().Where(predicate).ToListAsync();
         }
@@ -49,7 +49,7 @@ namespace SosCivil.Api.Repositories
             await SaveChanges();
         }
 
-        public async Task<int> SaveChanges()
+        public virtual async Task<int> SaveChanges()
         {
             return await Db.SaveChangesAsync();
         }

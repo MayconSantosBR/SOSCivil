@@ -1,23 +1,33 @@
 ﻿using FluentResults;
 using Microsoft.AspNetCore.Mvc;
+using SosCivil.Api.Controllers.Base;
+using SosCivil.Api.Data.Entities;
+using SosCivil.Api.Services.Interfaces;
 
 namespace SosCivil.Api.Controllers
 {
     [ApiController]
     [Route("api/")]
-    public class EstablishmentController : ControllerBase
+    public class EstablishmentController : SosCivilControllerBase
     {
+        private readonly IEstablishmentService _establishmentService;
+
+        public EstablishmentController(IEstablishmentService establishmentService)
+        {
+            _establishmentService = establishmentService;
+        }
+
         [Route("establishments")]
         [HttpGet]
-        public async Task<ActionResult<Result>> All()
+        public async Task<ActionResult> All()
         {
             try
             {
-                return Result.Ok();
+                return ValidateServiceResponse(await _establishmentService.GetAllAsync());
             }
             catch (Exception e)
             {
-                return Result.Fail(e.Message);
+                return BadRequest(e.Message);
             }
         }
     }

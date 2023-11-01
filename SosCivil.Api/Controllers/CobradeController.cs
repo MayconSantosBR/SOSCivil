@@ -1,13 +1,14 @@
 ﻿using FluentResults;
 using Microsoft.AspNetCore.Mvc;
+using SosCivil.Api.Controllers.Base;
 using SosCivil.Api.Data.Entities;
-using SosCivil.Api.Services;
+using SosCivil.Api.Services.Interfaces;
 
 namespace SosCivil.Api.Controllers
 {
     [ApiController]
     [Route("api/")]
-    public class CobradeController : ControllerBase
+    public class CobradeController : SosCivilControllerBase
     {
         private readonly ICobradeService _cobradeService;
 
@@ -22,7 +23,7 @@ namespace SosCivil.Api.Controllers
         {
             try
             {
-                return ValidateServiceResponse(await _cobradeService.AllAsync());
+                return ValidateServiceResponse(await _cobradeService.GetAllAsync());
             }
             catch (Exception e)
             {
@@ -36,20 +37,12 @@ namespace SosCivil.Api.Controllers
         {
             try
             {
-                return ValidateServiceResponse<List<Cobrade>>(await _cobradeService.CreateOrUpdateCobradeAsync());
+                return ValidateServiceResponse<List<Cobrade>>(await _cobradeService.CreateOrUpdateAsync());
             }
             catch (Exception e)
             {
                 return BadRequest(Result.Fail(e.Message));
             }
-        }
-
-        private ActionResult ValidateServiceResponse<T>(Result<T> result)
-        {
-            if (result.IsSuccess)
-                return Ok(result.Value);
-            else
-                return BadRequest(result.Errors);
         }
     }
 }

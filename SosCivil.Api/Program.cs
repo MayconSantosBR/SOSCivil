@@ -1,13 +1,13 @@
 using DevIO.App.Configurations;
 using Microsoft.EntityFrameworkCore;
 using SosCivil.Api.Data.Contexts;
-using SosCivil.Api.Data.Entities;
 using SosCivil.Api.Models.AutoMapper;
 using SosCivil.Api.Repositories;
 using SosCivil.Api.Repositories.Interfaces;
 using SosCivil.Api.Requesters;
 using SosCivil.Api.Requesters.Interfaces;
 using SosCivil.Api.Services;
+using SosCivil.Api.Services.Interfaces;
 
 var appConfig = new AppConfig();
 var builder = WebApplication.CreateBuilder(args);
