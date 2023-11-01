@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using FluentResults;
 using SosCivil.Api.Data.Entities;
-using SosCivil.Api.Repositories;
 using SosCivil.Api.Repositories.Interfaces;
 using SosCivil.Api.Requesters.Interfaces;
 using SosCivil.Api.Services.Base;
+using SosCivil.Api.Services.Interfaces;
 
 namespace SosCivil.Api.Services
 {
