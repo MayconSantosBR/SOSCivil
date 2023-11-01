@@ -23,7 +23,7 @@ namespace SosCivil.Api.Controllers
         {
             try
             {
-                return ValidateServiceResponse(await _cobradeService.AllAsync());
+                return ValidateServiceResponse(await _cobradeService.GetAllAsync());
             }
             catch (Exception e)
             {
@@ -37,7 +37,7 @@ namespace SosCivil.Api.Controllers
         {
             try
             {
-                return ValidateServiceResponse<List<Cobrade>>(await _cobradeService.CreateOrUpdateCobradeAsync());
+                return ValidateServiceResponse<List<Cobrade>>(await _cobradeService.CreateOrUpdateAsync());
             }
             catch (Exception e)
             {

@@ -4,35 +4,22 @@ using SosCivil.Api.Data.Entities;
 using SosCivil.Api.Repositories;
 using SosCivil.Api.Repositories.Interfaces;
 using SosCivil.Api.Requesters.Interfaces;
+using SosCivil.Api.Services.Base;
 
 namespace SosCivil.Api.Services
 {
-    public class CobradeService : ICobradeService
+    public class CobradeService : SosCivilServiceBase<Cobrade>, ICobradeService
     {
         private readonly IS2idRequester _s2idRequester;
-        private readonly IRepository<Cobrade> _cobradeRepository;
         private readonly IMapper _mapper;
 
-        public CobradeService(IS2idRequester s2idRequester, IRepository<Cobrade> cobradeRepository, IMapper mapper)
+        public CobradeService(IS2idRequester s2idRequester, IMapper mapper, IRepository<Cobrade> repository) : base(repository)
         {
             _s2idRequester = s2idRequester;
-            _cobradeRepository = cobradeRepository;
             _mapper = mapper;
         }
 
-        public async Task<Result<List<Cobrade>>> AllAsync()
-        {
-            try
-            {
-                return Result.Ok(await _cobradeRepository.GetAll());
-            }
-            catch (Exception e)
-            {
-                return Result.Fail(e.Message);
-            }
-        }
-
-        public async Task<Result> CreateOrUpdateCobradeAsync()
+        public override async Task<Result> CreateOrUpdateAsync()
         {
             try
             {
@@ -40,10 +27,10 @@ namespace SosCivil.Api.Services
 
                 foreach (var entity in entities)
                 {
-                    if (await _cobradeRepository.Get(c => c.CobradeCode == entity.CobradeCode) != null)
-                        await _cobradeRepository.Update(entity);
+                    if (await _repository.Get(c => c.CobradeCode == entity.CobradeCode) != null)
+                        await _repository.Update(entity);
                     else
-                        await _cobradeRepository.Create(entity);
+                        await _repository.Create(entity);
                 }
 
                 return Result.Ok();

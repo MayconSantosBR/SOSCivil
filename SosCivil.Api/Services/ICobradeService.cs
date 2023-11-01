@@ -1,11 +1,10 @@
 ﻿using FluentResults;
 using SosCivil.Api.Data.Entities;
+using SosCivil.Api.Services.Base.Interfaces;
 
 namespace SosCivil.Api.Services
 {
-    public interface ICobradeService
+    public interface ICobradeService : ISosCivilServiceBase<Cobrade>
     {
-        Task<Result<List<Cobrade>>> AllAsync();
-        Task<Result> CreateOrUpdateCobradeAsync();
     }
 }
