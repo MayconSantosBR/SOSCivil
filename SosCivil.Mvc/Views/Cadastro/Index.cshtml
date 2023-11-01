@@ -2,8 +2,29 @@
     ViewData["Title"] = "Cadastro";
 }
 
-<h1>
-    CADASTRO
-
-
-</h1>
+<div class="card card-outline-secondary">
+    <div class="card-header">
+        <h3 class="mb-0">CADASTRO</h3>
+    </div>
+    <div class="card-body">
+        <form autocomplete="off" class="form" role="form">
+            <div class="form-group">
+                <label for="inputNameOld">Nome</label>
+                <input class="form-control" id="inputNameOld" required="" type="text">
+            </div>
+            <div class="form-group">
+                <label for="inputEmailOld">Email</label>
+                <input class="form-control" id="inputEmailOld" required="" type="text">
+                <small class="form-text text-muted" id="passwordHelpBlock">Usar seu melhor email.</small>
+            </div>
+            <div class="form-group">
+                <label for="inputPasswordNewVerify">Senha</label>
+                <input class="form-control" id="inputPasswordNewVerify" required="" type="password">
+                <span class="form-text small text-muted">Sua senha deve ter de 8 a 20 caracteres, conter letras, números, caracteres especiais e não deve conter espaços.</span>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success btn-lg float-right" type="submit">Salvar</button>
+            </div>
+        </form>
+    </div>
+</div>

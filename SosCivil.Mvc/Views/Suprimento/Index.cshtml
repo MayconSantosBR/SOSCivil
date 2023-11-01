@@ -5,3 +5,118 @@
 <h1>
     SUPRIMENTOS
 </h1>
+<div class="card card-outline-secondary">
+    <div class="card-body">
+        <h3 class="text-center">Cadastro de itens</h3>
+        <hr>
+        <form autocomplete="off" class="form" role="form">
+            <div class="form-group">
+                <label for="cc_name">Descrição do item</label>
+                <input class="form-control" id="cc_name" pattern="\w+ \w+.*" required="required" title="First and last name" type="text">
+            </div>
+            <div class="form-group">
+                <label>Codigo do item</label>
+                <input autocomplete="off" class="form-control" maxlength="20" pattern="\d{16}" required="" title="Credit card number" type="text">
+            </div>
+            <div class="form-group row">
+                <label class="col-md-12">Quantidade</label>
+                <div class="col-md-4">
+                    <select class="form-control" name="cc_exp_mo" size="0">
+                        <option value="01">
+                            01
+                        </option>
+                        <option value="02">
+                            02
+                        </option>
+                        <option value="03">
+                            03
+                        </option>
+                        <option value="04">
+                            04
+                        </option>
+                        <option value="05">
+                            05
+                        </option>
+                        <option value="06">
+                            06
+                        </option>
+                        <option value="07">
+                            07
+                        </option>
+                        <option value="08">
+                            08
+                        </option>
+                        <option value="09">
+                            09
+                        </option>
+                        <option value="10">
+                            10
+                        </option>
+                        <option value="11">
+                            11
+                        </option>
+                        <option value="12">
+                            12
+                        </option>
+                    </select>
+                </div>
+                <label class="col-md-12">Unidade de medida</label>
+                <div class="col-md-4">
+                    <select class="form-control" name="cc_exp_yr" size="0">
+                        <option>
+                            kg
+                        </option>
+                        <option>
+                            T
+                        </option>
+                        <option>
+                            m
+                        </option>
+                        <option>
+                            km
+                        </option>
+                        <option>
+                            ml
+                        </option>
+                        <option>
+                            L
+                        </option>
+                        <option>
+                            Un
+                        </option>
+                        <option>
+                            Pç
+                        </option>
+                    </select>
+                </div>
+                <label class="col-md-12">Valor por unidade de medida</label>
+                <div class="col-md-4">
+                    <input autocomplete="off" class="form-control" maxlength="3" pattern="\d{3}" placeholder="$39,00" required="" title="Three digits on the back of your card" type="text">
+                </div>
+            </div>
+            <div class="row">
+                <label class="col-md-12">Valor total</label>
+            </div>
+            <div class="form-inline">
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        $
+                    </div>
+                    <input class="form-control text-right" id="exampleInputAmount" placeholder="390" type="text">
+                    <div class="input-group-addon">
+                        .00
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="form-group row">
+                <div class="col-md-6">
+                    <button class="btn btn-default btn-lg btn-block" type="reset">Cancelar</button>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-success btn-lg btn-block" type="submit">Salvar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
