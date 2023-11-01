@@ -1,7 +1,7 @@
 ﻿using FluentResults;
 using SosCivil.Api.Data.Entities;
 
-namespace SosCivil.Api.Services
+namespace SosCivil.Api.Services.Interfaces
 {
     public interface ICobradeService
     {

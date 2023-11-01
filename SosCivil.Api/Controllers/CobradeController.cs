@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SosCivil.Api.Controllers.Base;
 using SosCivil.Api.Data.Entities;
-using SosCivil.Api.Services;
+using SosCivil.Api.Services.Interfaces;
 
 namespace SosCivil.Api.Controllers
 {
