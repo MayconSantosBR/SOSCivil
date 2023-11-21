@@ -20,8 +20,8 @@
             <div id="menuToggle" class="toggle-menu active">
                 <i class="las la-bars fontsize-20"></i>
             </div>
-            <div>
-                <a asp-controller="Home" asp-action="Index"><h1 id="projectTitle">SOSCIVIL</h1></a>
+            <div id="projectTitle">
+                <a asp-controller="Home" asp-action="Index"><h1>SOSCIVIL</h1></a>
             </div>
             <div>
                 <a asp-controller="MeuPerfil" asp-action="Index"><img id="userImage" src="./Assets/images/logoSosCivilSemFundo.png"/></a>
@@ -54,10 +54,9 @@
             @RenderBody()
         </main>
     </div>
-
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/app.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
     <script>
         const toggleMenu = document.getElementById("menuToggle");

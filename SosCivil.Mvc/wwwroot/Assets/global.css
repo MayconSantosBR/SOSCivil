@@ -288,12 +288,16 @@ a {
 }
 
 #projectTitle {
+    position: relative;
+    left: 40px;
+}
+
+#projectTitle h1 {
     font-family: "Bebas Neue", sans-serif;
     color: var(--secondaryColor);
     font-size: 40px;
     text-align: center;
-    margin-bottom: -4px;
-    margin-left: 5vw;
+    margin-bottom: 0;
     cursor: pointer
 }
 

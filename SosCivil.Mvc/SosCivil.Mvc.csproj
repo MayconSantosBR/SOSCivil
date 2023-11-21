@@ -29,4 +29,9 @@
     <ProjectReference Include="..\SosCivil.Core\SosCivil.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Typescripts\Documentos\" />
+    <Folder Include="wwwroot\js\" />
+  </ItemGroup>
+
 </Project>
