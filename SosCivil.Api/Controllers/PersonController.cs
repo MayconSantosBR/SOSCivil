@@ -26,7 +26,7 @@ namespace SosCivil.Api.Controllers
         {
             try
             {
-                return ValidateServiceResponse(await _personService.GetAll());
+                return ValidateServiceResponse(await _personService.GetAllAsync());
             }
             catch (Exception e)
             {
@@ -38,7 +38,7 @@ namespace SosCivil.Api.Controllers
         {
             try
             {
-                return ValidateServiceResponse(await _personService.Get(id));
+                return ValidateServiceResponse(await _personService.GetByIdAsync(id));
             }
             catch (Exception e)
             {

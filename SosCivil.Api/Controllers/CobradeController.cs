@@ -27,7 +27,7 @@ namespace SosCivil.Api.Controllers
             }
             catch (Exception e)
             {
-                return BadRequest(e.Message);
+                return BadRequest(Result.Fail(e.Message));
             }
         }
 
