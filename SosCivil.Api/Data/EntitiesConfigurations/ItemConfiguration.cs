@@ -13,9 +13,6 @@ namespace SosCivil.Api.Data.EntitiesConfigurations
             builder.Property(x => x.UnityOfMeasurement)
                 .IsRequired();
 
-            builder.Property(x => x.Stock)
-                .IsRequired(false);
-
             builder.Property(x => x.Quantity)
                 .IsRequired();
 
