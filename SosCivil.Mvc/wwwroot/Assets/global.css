@@ -141,6 +141,7 @@ a {
 
 
 .side-menu {
+    z-index: 1;
     width: 0;
     height: calc(100% - 33px);
     background-color: var(--primaryColor);

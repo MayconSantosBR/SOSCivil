@@ -1,5 +1,7 @@
-﻿@{
+﻿@using SosCivil.Core.Extensions;
+@{
     ViewData["Title"] = "Solicitacoes";
+    var solicitacoes = (List<Solicitacao>)ViewData["Solicitacoes"];
 }
 
 <h1>
@@ -9,29 +11,30 @@
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Desastre</th>
-            <th scope="col">Nivel</th>
-            <th scope="col">Impacto</th>
+            <th scope="col">Nome Solicitante</th>
+            <th scope="col">CPF/CNPJ Solicitante</th>
+            <th scope="col">Status</th>
+            <th scope="col">Data da Solicitação</th>
+            <th scope="col">Suprimento</th>
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Tornado</td>
-            <td>5</td>
-            <td>35 km</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Desmoronamento</td>
-            <td>3</td>
-            <td>1 km</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Terremoto</td>
-            <td>2</td>
-            <td>10 km</td>
-        </tr>
+        @{
+            foreach(var solicitacao in solicitacoes)
+            {
+                <tr>
+                    <th scope="row">@solicitacao.Id</th>
+                    <td>@solicitacao.NomeSolicitante</td>
+                    <td>@solicitacao.CpfCnpjSolicitante</td>
+                    <td>@solicitacao.Status.GetDescription()</td>
+                    <td>@solicitacao.DataSolicitacao</td>
+                    <td>@solicitacao.Suprimento.NomeItem</td>
+                    <td>
+                        <a href="Solicitacao/Editar/@solicitacao.Id"><i class="bi bi-pencil-square" alt="Editar" style="font-size; 1.2rem; margin-right: 1.2rem; color: #343a40"></i></a>
+                        <a href="Solicitacao/Excluir/@solicitacao.Id"><i class="bi bi-x-circle" style="font-size: 1.2rem; color: #343a40" alt="Excluir"></i></a>
+                    </td>
+                </tr>
+            }
+        }
     </tbody>
 </table>
