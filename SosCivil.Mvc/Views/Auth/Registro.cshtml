@@ -1,0 +1,36 @@
+﻿@using SosCivil.Mvc.Models.Auth;
+@model UsuarioRegistroViewModel
+@{
+    ViewData["Title"] = "Registro";
+}
+<div class="row">
+    <div class="col-md-12">
+        <section>
+            <form method="post">
+                <div class="mb-3">
+                    <label asp-for="Email" class="form-label">Email</label>
+                    <input asp-for="Email" type="email" class="form-control">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Senha" class="form-label">Senha</label>
+                    <input asp-for="Senha" type="password" class="form-control">
+                    <span asp-validation-for="Senha" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="SenhaConfirmacao" class="form-label">Confirme sua Senha</label>
+                    <input asp-for="SenhaConfirmacao" type="password" class="form-control">
+                    <span asp-validation-for="SenhaConfirmacao" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </section>
+
+    </div>
+
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
