@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SosCivil.Api.Controllers.Base;
 using SosCivil.Api.Data.Entities;
+using SosCivil.Api.Services;
 using SosCivil.Api.Services.Interfaces;
 
 namespace SosCivil.Api.Controllers
@@ -28,6 +29,20 @@ namespace SosCivil.Api.Controllers
             catch (Exception e)
             {
                 return BadRequest(e.Message);
+            }
+        }
+
+        [Route("establishments/{id}")]
+        [HttpGet]
+        public async Task<ActionResult> Get(long id)
+        {
+            try
+            {
+                return ValidateServiceResponse(await _establishmentService.GetByIdAsync(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(Result.Fail(e.Message));
             }
         }
     }

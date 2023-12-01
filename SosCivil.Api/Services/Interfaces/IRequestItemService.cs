@@ -3,7 +3,7 @@ using SosCivil.Api.Services.Base.Interfaces;
 
 namespace SosCivil.Api.Services.Interfaces
 {
-    public interface IPersonService : ISosCivilServiceBase<Person>
+    public interface IRequestItemService : ISosCivilServiceBase<RequestItem>
     {
     }
 }

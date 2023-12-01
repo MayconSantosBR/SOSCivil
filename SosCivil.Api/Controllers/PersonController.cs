@@ -22,11 +22,11 @@ namespace SosCivil.Api.Controllers
 
         [Route("persons")]
         [HttpGet]
-        public async Task<ActionResult<Result>> All()
+        public async Task<ActionResult> All()
         {
             try
             {
-                return ValidateServiceResponse(await _personService.GetAll());
+                return ValidateServiceResponse(await _personService.GetAllAsync());
             }
             catch (Exception e)
             {
@@ -34,18 +34,18 @@ namespace SosCivil.Api.Controllers
             }
         }
 
-        public async Task<ActionResult<Result>> Get(long id)
+        [Route("persons/{id}")]
+        [HttpGet]
+        public async Task<ActionResult> Get(long id)
         {
             try
             {
-                return ValidateServiceResponse(await _personService.Get(id));
+                return ValidateServiceResponse(await _personService.GetByIdAsync(id));
             }
             catch (Exception e)
             {
                 return BadRequest(Result.Fail(e.Message));
             }
         }
-
     }
-
 }
