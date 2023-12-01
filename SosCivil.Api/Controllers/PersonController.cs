@@ -22,7 +22,7 @@ namespace SosCivil.Api.Controllers
 
         [Route("persons")]
         [HttpGet]
-        public async Task<ActionResult<Result>> All()
+        public async Task<ActionResult> All()
         {
             try
             {
@@ -34,7 +34,9 @@ namespace SosCivil.Api.Controllers
             }
         }
 
-        public async Task<ActionResult<Result>> Get(long id)
+        [Route("persons/{id}")]
+        [HttpGet]
+        public async Task<ActionResult> Get(long id)
         {
             try
             {
@@ -45,7 +47,5 @@ namespace SosCivil.Api.Controllers
                 return BadRequest(Result.Fail(e.Message));
             }
         }
-
     }
-
 }

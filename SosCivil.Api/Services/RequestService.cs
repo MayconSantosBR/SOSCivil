@@ -6,10 +6,10 @@ using SosCivil.Api.Services.Interfaces;
 
 namespace SosCivil.Api.Services
 {
-    public class ItemService : SosCivilServiceBase<Item>, IItemService
+    public class RequestService : SosCivilServiceBase<Request>, IRequestService
     {
         private readonly IMapper _mapper;
-        public ItemService(IRepository<Item> repository, IMapper mapper) : base(repository)
+        protected RequestService(IRepository<Request> repository, IMapper mapper) : base(repository)
         {
             _mapper = mapper;
         }

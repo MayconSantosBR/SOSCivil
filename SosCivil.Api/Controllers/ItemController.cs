@@ -1,6 +1,7 @@
 ﻿using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 using SosCivil.Api.Controllers.Base;
+using SosCivil.Api.Services;
 using SosCivil.Api.Services.Interfaces;
 
 namespace SosCivil.Api.Controllers
@@ -23,6 +24,20 @@ namespace SosCivil.Api.Controllers
             try
             {
                 return ValidateServiceResponse(await _itemService.GetAllAsync());
+            }
+            catch (Exception e)
+            {
+                return BadRequest(Result.Fail(e.Message));
+            }
+        }
+
+        [Route("items/{id}")]
+        [HttpGet]
+        public async Task<ActionResult> Get(long id)
+        {
+            try
+            {
+                return ValidateServiceResponse(await _itemService.GetByIdAsync(id));
             }
             catch (Exception e)
             {

@@ -1,23 +1,46 @@
 ﻿using FluentResults;
 using Microsoft.AspNetCore.Mvc;
+using SosCivil.Api.Controllers.Base;
+using SosCivil.Api.Services;
 
 namespace SosCivil.Api.Controllers
 {
     [ApiController]
     [Route("api/")]
-    public class UserController : ControllerBase
+    public class UserController : SosCivilControllerBase
     {
+        private readonly IUserService _userService;
+
+        public UserController(IUserService userService)
+        {
+            _userService = userService;
+        }
+
         [Route("users")]
         [HttpGet]
-        public async Task<ActionResult<Result>> All()
+        public async Task<ActionResult> All()
         {
             try
             {
-                return Result.Ok();
+                return ValidateServiceResponse(await _userService.GetAllAsync());
             }
             catch (Exception e)
             {
-                return Result.Fail(e.Message);
+                return BadRequest(Result.Fail(e.Message));
+            }
+        }
+
+        [Route("users/{id}")]
+        [HttpGet]
+        public async Task<ActionResult> Get(long id)
+        {
+            try
+            {
+                return ValidateServiceResponse(await _userService.GetByIdAsync(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(Result.Fail(e.Message));
             }
         }
     }

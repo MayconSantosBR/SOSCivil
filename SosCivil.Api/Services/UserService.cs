@@ -2,14 +2,13 @@
 using SosCivil.Api.Data.Entities;
 using SosCivil.Api.Repositories.Interfaces;
 using SosCivil.Api.Services.Base;
-using SosCivil.Api.Services.Interfaces;
 
 namespace SosCivil.Api.Services
 {
-    public class ItemService : SosCivilServiceBase<Item>, IItemService
+    public class UserService : SosCivilServiceBase<User>, IUserService
     {
         private readonly IMapper _mapper;
-        public ItemService(IRepository<Item> repository, IMapper mapper) : base(repository)
+        public UserService(IRepository<User> repository, IMapper mapper) : base(repository)
         {
             _mapper = mapper;
         }
