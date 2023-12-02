@@ -288,19 +288,25 @@ a {
     }
 }
 
+@media (max-width: 991px) {
+    .icons {
+        display: grid !important;
+    }
+}
+
 #projectTitle {
     position: relative;
     left: 40px;
 }
 
-#projectTitle h1 {
-    font-family: "Bebas Neue", sans-serif;
-    color: var(--secondaryColor);
-    font-size: 40px;
-    text-align: center;
-    margin-bottom: 0;
-    cursor: pointer
-}
+    #projectTitle h1 {
+        font-family: "Bebas Neue", sans-serif;
+        color: var(--secondaryColor);
+        font-size: 40px;
+        text-align: center;
+        margin-bottom: 0;
+        cursor: pointer
+    }
 
 #userImage {
     border-radius: 50%;
@@ -334,4 +340,39 @@ a {
     font-family: "Bebas Neue", sans-serif;
     color: var(--primaryColor);
     font-size: 30px;
+}
+
+.icons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+    .icons i {
+        color: var(--secondaryColor);
+        margin: 0 10px;
+    }
+
+.homeCards {
+    width: 70%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.cardsHome {
+    border: 2px solid var(--primaryColor);
+    border-color: var(--primaryColor);
+    color: var(--secondaryColor);
+    font-size: 40px;
+    text-align: center;
+}
+
+.cardsHome h2 {
+    font-family: "Bebas Neue", sans-serif;
+}
+
+.card {
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
