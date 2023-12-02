@@ -2,13 +2,62 @@
     ViewData["Title"] = "Home";
 }
 
-
-<h1>HOME</h1>
-
-<div class="d-flex justify-content-center">
-    <div class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
+<div class="homeCards">
+    <div class="row mb-5">
+        <div class="col-lg-4">
+            <a asp-controller="Documento" asp-action="Index" class="item">
+                <div class="card cardsHome">
+                    <div class="card-body">
+                        <i class="las la-folder-open me-2"></i>
+                        <h2>Documentos</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-4">
+            <a asp-controller="Suprimento" asp-action="Index" class="item">
+                <div class="card cardsHome">
+                    <div class="card-body">
+                        <i class="las la-box me-2"></i>
+                        <h2>Suprimentos</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-4">
+            <a asp-controller="Solicitacao" asp-action="Index" class="item">
+                <div class="card cardsHome">
+                    <div class="card-body">
+                        <i class="las la-file-alt me-2"></i>
+                        <h2>Solicitações</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <a asp-controller="Entrega" asp-action="Index" class="item">
+                <div class="card cardsHome">
+                    <div class="card-body">
+                        <i class="las la-truck me-2"></i>
+                        <h2>Entregas</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-6">
+            <a asp-controller="Desastre" asp-action="Index" class="item">
+                <div class="card cardsHome">
+                    <div class="card-body">
+                        <i class="las la-fire me-2"></i>
+                        <h2>Desastres</h2>
+                    </div>
+                </div>
+            </a>
+        </div>
     </div>
 </div>
+
 
 
