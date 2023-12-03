@@ -8,7 +8,7 @@ namespace SosCivil.Api.Services
     public class UserService : SosCivilServiceBase<User>, IUserService
     {
         private readonly IMapper _mapper;
-        public UserService(IRepository<User> repository, IMapper mapper) : base(repository)
+        public UserService(IRepository<User> repository, IMapper mapper) : base(repository, mapper)
         {
             _mapper = mapper;
         }

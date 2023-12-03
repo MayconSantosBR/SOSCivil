@@ -10,7 +10,7 @@ namespace SosCivil.Api.Services
     {
         private readonly IMapper _mapper;
 
-        public OccurrenceService(IRepository<Occurrence> repository, IMapper mapper) : base(repository)
+        public OccurrenceService(IRepository<Occurrence> repository, IMapper mapper) : base(repository, mapper)
         {
             _mapper = mapper;
         }

@@ -9,7 +9,7 @@ namespace SosCivil.Api.Services
     public class EstablishmentService : SosCivilServiceBase<Establishment>, IEstablishmentService
     {
         private readonly IMapper _mapper;
-        public EstablishmentService(IMapper mapper, IRepository<Establishment> repository) : base(repository)
+        public EstablishmentService(IMapper mapper, IRepository<Establishment> repository) : base(repository, mapper)
         {
             _mapper = mapper;
         }

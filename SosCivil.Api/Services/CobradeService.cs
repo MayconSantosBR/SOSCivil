@@ -13,7 +13,7 @@ namespace SosCivil.Api.Services
         private readonly IS2idRequester _s2idRequester;
         private readonly IMapper _mapper;
 
-        public CobradeService(IS2idRequester s2idRequester, IMapper mapper, IRepository<Cobrade> repository) : base(repository)
+        public CobradeService(IS2idRequester s2idRequester, IMapper mapper, IRepository<Cobrade> repository) : base(repository, mapper)
         {
             _s2idRequester = s2idRequester;
             _mapper = mapper;

@@ -1,6 +1,7 @@
 ﻿using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 using SosCivil.Api.Controllers.Base;
+using SosCivil.Api.Models.Dtos.Controllers;
 using SosCivil.Api.Services;
 using SosCivil.Api.Services.Interfaces;
 
@@ -31,6 +32,20 @@ namespace SosCivil.Api.Controllers
             }
         }
 
+        [Route("items")]
+        [HttpPost]
+        public async Task<ActionResult> Create([FromBody] ItemDto itemDto)
+        {
+            try
+            {
+                return ValidateServiceResponse(await _itemService.MapAndCreateAsync(itemDto));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(Result.Fail(e.Message));
+            }
+        }
+
         [Route("items/{id}")]
         [HttpGet]
         public async Task<ActionResult> Get(long id)
@@ -44,5 +59,19 @@ namespace SosCivil.Api.Controllers
                 return BadRequest(Result.Fail(e.Message));
             }
         }
+
+        //[Route("items/{id}")]
+        //[HttpPut]
+        //public async Task<ActionResult> Update(long id, [FromBody] ItemDto itemDto)
+        //{
+        //    try
+        //    {
+        //        return ValidateServiceResponse(await _itemService.MapAndUpdateAsync(itemDto));
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        return BadRequest(Result.Fail(e.Message));
+        //    }
+        //}
     }
 }
