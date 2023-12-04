@@ -1,40 +1,49 @@
 ﻿@using SosCivil.Core.Extensions;
 @{
     ViewData["Title"] = "Solicitacoes";
-    var solicitacoes = (List<Solicitacao>)ViewData["Solicitacoes"];
+    var solicitacoes = (List<Solicitacao>?)ViewData["Solicitacoes"];
 }
-
-<h1>
-    SOLICITAÇÕES
-</h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nome Solicitante</th>
-            <th scope="col">CPF/CNPJ Solicitante</th>
-            <th scope="col">Status</th>
-            <th scope="col">Data da Solicitação</th>
-            <th scope="col">Suprimento</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            foreach(var solicitacao in solicitacoes)
-            {
-                <tr>
-                    <th scope="row">@solicitacao.Id</th>
-                    <td>@solicitacao.NomeSolicitante</td>
-                    <td>@solicitacao.CpfCnpjSolicitante</td>
-                    <td>@solicitacao.Status.GetDescription()</td>
-                    <td>@solicitacao.DataSolicitacao</td>
-                    <td>@solicitacao.Suprimento.NomeItem</td>
-                    <td>
-                        <a href="Solicitacao/Editar/@solicitacao.Id"><i class="bi bi-pencil-square" alt="Editar" style="font-size; 1.2rem; margin-right: 1.2rem; color: #343a40"></i></a>
-                        <a href="Solicitacao/Excluir/@solicitacao.Id"><i class="bi bi-x-circle" style="font-size: 1.2rem; color: #343a40" alt="Excluir"></i></a>
-                    </td>
-                </tr>
-            }
-        }
-    </tbody>
-</table>
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <h1>
+        SOLICITAÇÕES
+    </h1>
+    <div class="card">
+        <div class="table-responsive table-wrapper-scroll-y">
+            <table class="table table-striped mb-0">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome Solicitante</th>
+                        <th scope="col">CPF/CNPJ Solicitante</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Data da Solicitação</th>
+                        <th scope="col">Suprimento</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (var solicitacao in solicitacoes)
+                        {
+                            <tr>
+                                <th scope="row">@solicitacao.Id</th>
+                                <td>@solicitacao.NomeSolicitante</td>
+                                <td>@solicitacao.CpfCnpjSolicitante</td>
+                                <td>@solicitacao.Status.GetDescription()</td>
+                                <td>@solicitacao.DataSolicitacao</td>
+                                <td>@solicitacao.Suprimento.NomeItem</td>
+                                <td class="icons">
+                                    <a href="Solicitacao/Editar/@solicitacao.Id"><i class="las la-pen fontsize-20" alt="Editar"></i></a>
+                                    <a href="Solicitacao/Excluir/@solicitacao.Id"><i class="las la-trash fontsize-20" alt="Excluir"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

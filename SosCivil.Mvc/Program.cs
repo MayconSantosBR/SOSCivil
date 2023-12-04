@@ -1,22 +1,18 @@
+using SosCivil.Mvc.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllersWithViews();
-builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+
+builder.Services.AddIdentityConfiguration();
+
+builder.Services.AddMvcConfiguration();
+
+builder.Services.RegisterServices();
+
+
 var app = builder.Build();
 
-app.UseExceptionHandler("/Error/HandleError");
-app.UseStatusCodePagesWithReExecute("/Error/{0}");
-app.UseHsts();
+app.UseMvcConfiguration();
 
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-
-app.UseRouting();
-app.UseAuthorization();
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-
-app.Run();
+await app.RunAsync();
