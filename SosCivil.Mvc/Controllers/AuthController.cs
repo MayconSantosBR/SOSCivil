@@ -8,7 +8,7 @@ using System.Security.Claims;
 
 namespace SosCivil.Mvc.Controllers
 {
-    public class AuthController : Controller
+    public class AuthController : MainController
     {
         private readonly IAuthService _authService;
 
@@ -37,6 +37,8 @@ namespace SosCivil.Mvc.Controllers
 
                 var res = await _authService.Registrar(usuarioRegistro);
 
+                if (ResponsePossuiErros(res.ResponseResult))
+                    return View(usuarioRegistro);
 
                 await RealizarLogin(res);
 
@@ -62,14 +64,25 @@ namespace SosCivil.Mvc.Controllers
         [Route("login")]
         public async Task<IActionResult> Login(UsuarioLoginViewModel usuarioLogin)
         {
-            if (!ModelState.IsValid)
+            try
+            {
+
+
+                if (!ModelState.IsValid)
+                    return View(usuarioLogin);
+
+                var res = await _authService.Login(usuarioLogin);
+                if (ResponsePossuiErros(res.ResponseResult))
+                    return View(usuarioLogin);
+
+                await RealizarLogin(res);
+
+                return RedirectToAction("Index", "Home");
+            }
+            catch(Exception e)
+            {
                 return View(usuarioLogin);
-
-            var res = await _authService.Login(usuarioLogin);
-
-            await RealizarLogin(res);
-
-            return RedirectToAction("Index", "Home");
+            }
 
         }
 

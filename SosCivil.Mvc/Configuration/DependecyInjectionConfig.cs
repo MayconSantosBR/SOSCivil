@@ -1,4 +1,5 @@
-﻿using SosCivil.Mvc.Service;
+﻿using SosCivil.Mvc.Extensions;
+using SosCivil.Mvc.Service;
 
 namespace SosCivil.Mvc.Configuration
 {
@@ -7,6 +8,8 @@ namespace SosCivil.Mvc.Configuration
         public static void RegisterServices(this IServiceCollection services)
         {
             services.AddHttpClient<IAuthService, AuthService>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<IUser, AspNetUser>();
         }
     }
 }
