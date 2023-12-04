@@ -9,7 +9,7 @@ namespace SosCivil.Api.Services
     public class RequestItemService : SosCivilServiceBase<RequestItem>, IRequestItemService
     {
         private readonly IMapper _mapper;
-        public RequestItemService(IRepository<RequestItem> repository, IMapper mapper) : base(repository)
+        public RequestItemService(IRepository<RequestItem> repository, IMapper mapper) : base(repository, mapper)
         {
             _mapper = mapper;
         }

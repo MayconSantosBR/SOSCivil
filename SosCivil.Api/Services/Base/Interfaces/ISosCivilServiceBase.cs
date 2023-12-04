@@ -5,6 +5,7 @@ namespace SosCivil.Api.Services.Base.Interfaces
 {
     public interface ISosCivilServiceBase<T> where T : BaseEntity
     {
+        Task<Result<T>> MapAndCreateAsync<M>(M dto);
         Task<Result<T>> CreateAsync(T entity);
         Task<Result> CreateOrUpdateAsync();
         Task<Result<List<T>>> GetAllAsync();
