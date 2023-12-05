@@ -32,6 +32,12 @@ h1, h2, h3, h4, h5, h6, p, a {
     font-family: "Poppins", sans-serif;
 }
 
+h1 {
+    font-family: "Bebas Neue", sans-serif;
+    margin-bottom: 0;
+    color: var(--secondaryColor);
+}
+
 a {
     text-decoration: none;
 }
@@ -186,8 +192,9 @@ a {
         border-radius: 35px;
         display: flex;
         align-items: center;
-        font-size: 16px;
-        font-weight: 600;
+        font-size: 20px;
+        font-family: "Bebas Neue", sans-serif;
+        font-weight: 500;
         -webkit-user-select: none;
         user-select: none;
         overflow: hidden;
@@ -254,8 +261,6 @@ a {
     }
 }
 
-
-
 @media (max-width: 768px) {
     .side-menu.resize {
         width: 100%;
@@ -285,6 +290,10 @@ a {
 
     ::-webkit-scrollbar-thumb:active {
         background: var(--primaryColor);
+    }
+
+    .homeCards {
+        margin-top: calc(200vw - 83vh);
     }
 }
 
@@ -375,4 +384,15 @@ a {
 .card {
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+@media (min-width: 768px) {
+    .cardsHome:nth-child(1) {
+        margin: 0 10px !important;
+    }
+}
+
+.titlePage {
+    text-align: center;
+    margin-bottom: 1.5rem;
 }
