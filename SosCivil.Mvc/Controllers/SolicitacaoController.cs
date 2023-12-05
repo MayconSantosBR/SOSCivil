@@ -53,5 +53,17 @@ namespace SosCivil.Mvc.Controllers
             ViewData["Solicitacoes"] = solicitacoes;
             return View();
         }
+
+        public IActionResult Novo()
+        {
+            var model = new Solicitacao();
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Novo(Solicitacao model)
+        {
+            return View(model);
+        }
     }
 }

@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SosCivil.Mvc", "SosCivil.Mv
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SosCivil.Core", "SosCivil.Core\SosCivil.Core.csproj", "{D7A7F8E5-35F6-4DEA-9772-44FA34F53649}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SosCivil.Authentication", "SosCivil.Authentication\SosCivil.Authentication.csproj", "{4E78B2F2-35D7-4F3A-A88B-498B48C68942}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SosCivil.Authentication", "SosCivil.Authentication\SosCivil.Authentication.csproj", "{4E78B2F2-35D7-4F3A-A88B-498B48C68942}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,0 +1,39 @@
+﻿@using SosCivil.Api.Data.Enums
+@model SosCivil.Mvc.Models.Solicitacao
+
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <h1 class="titlePage">
+        SOLICITAÇÕES
+    </h1>
+    <div class="card p-4">
+        <form asp-action="Novo">
+            <div class="row">
+                <input type="hidden" asp-for="Id">
+                <div class="col-md-4">
+                    <div class="styled-input">
+                        <input type="text" id="nomeSolicitante" asp-for="NomeSolicitante" required>
+                        <label for="nomeSolicitante">Nome Solicitante</label>
+                    </div> 
+                </div>
+                <div class="col-md-4">
+                    <div class="styled-input">
+                    
+                    <select id="status" asp-for="Status" required>
+                        <option value=""></option>
+                        @foreach (var status in Enum.GetValues(typeof(StatusEnum)).Cast<StatusEnum>())
+                        {
+                            <option value="@status">@status</option>
+                        }
+                    </select>
+                        <label for="status" class="col-form-label">Status</label>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-dark">Salvar</button>
+        </form>
+    </div>
+</body>
+</html>
