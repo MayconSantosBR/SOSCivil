@@ -28,25 +28,32 @@ namespace SosCivil.Authentication.Controllers
         [HttpPost("register")]
         public async Task<ActionResult> Register(UserRegister userRegister)
         {
-
-            if (!ModelState.IsValid)
-                return CustomResponse(ModelState);
-
-            var user = new IdentityUser
+            try
             {
-                UserName = userRegister.Email,
-                Email = userRegister.Email,
-                EmailConfirmed = true
-            };
+                if (!ModelState.IsValid)
+                    return CustomResponse(ModelState);
 
-            var result = await _userManager.CreateAsync(user, userRegister.Senha);
+                var user = new IdentityUser
+                {
+                    UserName = userRegister.Email,
+                    Email = userRegister.Email,
+                    EmailConfirmed = true
+                };
 
-            if (result.Succeeded)
-                return CustomResponse(await GenerateJwt(userRegister.Email));
+                var result = await _userManager.CreateAsync(user, userRegister.Senha);
 
-            foreach (var error in result.Errors)
-                AddProcessingError(error.Description);
-            return CustomResponse();
+                if (result.Succeeded)
+                    return CustomResponse(await GenerateJwt(userRegister.Email));
+
+                foreach (var error in result.Errors)
+                    AddProcessingError(error.Description);
+                return CustomResponse();
+            }
+            catch(Exception e)
+            {
+                return CustomResponse();
+            }
+
         }
 
         [HttpPost("login")]
