@@ -34,7 +34,7 @@ namespace SosCivil.Api.Services.Base
         {
             try
             {
-                await _repository.Create(entity);
+                await _repository.CreateAsync(entity);
                 return Result.Ok();
             }
             catch (Exception e)
@@ -47,7 +47,21 @@ namespace SosCivil.Api.Services.Base
         {
             try
             {
-                return Result.Ok(await _repository.GetAll());
+                return Result.Ok(await _repository.GetAllAsync());
+            }
+            catch (Exception e)
+            {
+                return Result.Fail(e.Message);
+            }
+        }
+
+        public virtual async Task<Result<T>> MapAndUpdateAsync<M>(long id, M dto)
+        {
+            try
+            {
+                var entity = _mapper.Map<T>(dto);
+                entity.Id = id;
+                return await UpdateAsync(entity);
             }
             catch (Exception e)
             {
@@ -72,7 +86,7 @@ namespace SosCivil.Api.Services.Base
         {
             try
             {
-                return Result.Ok(await _repository.GetById(id));
+                return Result.Ok(await _repository.GetByIdAsync(id));
             }
             catch (Exception e)
             {
@@ -80,11 +94,11 @@ namespace SosCivil.Api.Services.Base
             }
         }
 
-        public virtual async Task<Result> RemoveAsync(long id)
+        public virtual async Task<Result<T>> RemoveAsync(long id)
         {
             try
             {
-                await _repository.Remove(id);
+                await _repository.RemoveAsync(id);
                 return Result.Ok();
             }
             catch (Exception e)

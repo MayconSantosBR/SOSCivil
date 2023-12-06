@@ -21,17 +21,17 @@ namespace SosCivil.Api.Repositories
             return await DbSet.AsNoTracking().Where(predicate).ToListAsync();
         }
 
-        public virtual async Task<TEntity> GetById(long id)
+        public virtual async Task<TEntity> GetByIdAsync(long id)
         {
             return await DbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public virtual async Task<List<TEntity>> GetAll()
+        public virtual async Task<List<TEntity>> GetAllAsync()
         {
             return await DbSet.AsNoTracking().ToListAsync();
         }
 
-        public virtual async Task Create(TEntity entity)
+        public virtual async Task CreateAsync(TEntity entity)
         {
             DbSet.Add(entity);
             await SaveChanges();
@@ -43,7 +43,7 @@ namespace SosCivil.Api.Repositories
             await SaveChanges();
         }
 
-        public virtual async Task Remove(long id)
+        public virtual async Task RemoveAsync(long id)
         {
             DbSet.Remove(new TEntity { Id = id });
             await SaveChanges();

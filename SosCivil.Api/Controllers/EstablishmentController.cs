@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SosCivil.Api.Controllers.Base;
 using SosCivil.Api.Data.Entities;
+using SosCivil.Api.Models.Dtos.Controllers;
 using SosCivil.Api.Services;
 using SosCivil.Api.Services.Interfaces;
 
@@ -32,6 +33,20 @@ namespace SosCivil.Api.Controllers
             }
         }
 
+        [Route("establishments")]
+        [HttpPost]
+        public async Task<ActionResult> Create([FromBody] EstablishmentDto establishment)
+        {
+            try
+            {
+                return ValidateServiceResponse(await _establishmentService.MapAndCreateAsync(establishment));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
         [Route("establishments/{id}")]
         [HttpGet]
         public async Task<ActionResult> Get(long id)
@@ -39,6 +54,34 @@ namespace SosCivil.Api.Controllers
             try
             {
                 return ValidateServiceResponse(await _establishmentService.GetByIdAsync(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(Result.Fail(e.Message));
+            }
+        }
+
+        [Route("establishments/{id}")]
+        [HttpPut]
+        public async Task<ActionResult> Update(long id, [FromBody] EstablishmentDto establishment)
+        {
+            try
+            {
+                return ValidateServiceResponse(await _establishmentService.MapAndUpdateAsync(id, establishment));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(Result.Fail(e.Message));
+            }
+        }
+
+        [Route("establishments/{id}")]
+        [HttpDelete]
+        public async Task<ActionResult> Delete(long id)
+        {
+            try
+            {
+                return ValidateServiceResponse(await _establishmentService.RemoveAsync(id));
             }
             catch (Exception e)
             {

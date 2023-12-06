@@ -5,12 +5,12 @@ namespace SosCivil.Api.Repositories.Interfaces
 {
     public interface IRepository<TEntity> : IDisposable where TEntity : BaseEntity
     {
-        Task Create(TEntity entity);
-        Task<List<TEntity>> GetAll();
+        Task CreateAsync(TEntity entity);
+        Task<List<TEntity>> GetAllAsync();
         Task<IEnumerable<TEntity>> Get(Expression<Func<TEntity, bool>> predicate);
-        Task<TEntity> GetById(long id);
+        Task<TEntity> GetByIdAsync(long id);
         Task Update(TEntity entity);
-        Task Remove(long id);
+        Task RemoveAsync(long id);
         Task<int> SaveChanges();
     }
 }
