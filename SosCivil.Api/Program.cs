@@ -1,3 +1,4 @@
+using Amazon.S3;
 using DevIO.App.Configurations;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Serialization;
@@ -16,6 +17,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 builder.Services.AddDbContext<MainContext>(options => options.UseNpgsql(appConfig.GetSetting("ConnectionStrings:SosCivil")));
 builder.Services.ResolveDependencies();
 

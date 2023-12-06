@@ -60,18 +60,32 @@ namespace SosCivil.Api.Controllers
             }
         }
 
-        //[Route("items/{id}")]
-        //[HttpPut]
-        //public async Task<ActionResult> Update(long id, [FromBody] ItemDto itemDto)
-        //{
-        //    try
-        //    {
-        //        return ValidateServiceResponse(await _itemService.MapAndUpdateAsync(itemDto));
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        return BadRequest(Result.Fail(e.Message));
-        //    }
-        //}
+        [Route("items/{id}")]
+        [HttpPut]
+        public async Task<ActionResult> Update([FromRoute] long id, [FromBody] ItemDto itemDto)
+        {
+            try
+            {
+                return ValidateServiceResponse(await _itemService.MapAndUpdateAsync(id, itemDto));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(Result.Fail(e.Message));
+            }
+        }
+
+        [Route("items/{id}")]
+        [HttpDelete]
+        public async Task<ActionResult> Delete([FromRoute] long id)
+        {
+            try
+            {
+                return ValidateServiceResponse(await _itemService.RemoveAsync(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(Result.Fail(e.Message));
+            }
+        }
     }
 }

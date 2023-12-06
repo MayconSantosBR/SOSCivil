@@ -30,7 +30,7 @@ namespace SosCivil.Api.Services
                     if (await _repository.Get(c => c.CobradeCode == entity.CobradeCode) != null)
                         await _repository.Update(entity);
                     else
-                        await _repository.Create(entity);
+                        await _repository.CreateAsync(entity);
                 }
 
                 return Result.Ok();

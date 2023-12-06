@@ -1,6 +1,7 @@
 ﻿using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 using SosCivil.Api.Controllers.Base;
+using SosCivil.Api.Models.Dtos.Controllers;
 using SosCivil.Api.Services;
 using SosCivil.Api.Services.Interfaces;
 
@@ -31,6 +32,20 @@ namespace SosCivil.Api.Controllers
             }
         }
 
+        [Route("occurrences")]
+        [HttpPost]
+        public async Task<ActionResult> Create([FromBody] OccurrenceDto occurrence)
+        {
+            try
+            {
+                return ValidateServiceResponse(await _occurrenceService.MapAndCreateAsync(occurrence));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(Result.Fail(e.Message));
+            }
+        }
+
         [Route("occurrences/{id}")]
         [HttpGet]
         public async Task<ActionResult> Get(long id)
@@ -38,6 +53,34 @@ namespace SosCivil.Api.Controllers
             try
             {
                 return ValidateServiceResponse(await _occurrenceService.GetByIdAsync(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(Result.Fail(e.Message));
+            }
+        }
+
+        [Route("occurrences/{id}")]
+        [HttpPut]
+        public async Task<ActionResult> Update(long id, [FromBody] OccurrenceDto occurrence)
+        {
+            try
+            {
+                return ValidateServiceResponse(await _occurrenceService.MapAndUpdateAsync(id, occurrence));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(Result.Fail(e.Message));
+            }
+        }
+
+        [Route("occurrences/{id}")]
+        [HttpDelete]
+        public async Task<ActionResult> Delete(long id)
+        {
+            try
+            {
+                return ValidateServiceResponse(await _occurrenceService.RemoveAsync(id));
             }
             catch (Exception e)
             {

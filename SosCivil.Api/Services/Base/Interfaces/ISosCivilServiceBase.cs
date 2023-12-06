@@ -10,7 +10,8 @@ namespace SosCivil.Api.Services.Base.Interfaces
         Task<Result> CreateOrUpdateAsync();
         Task<Result<List<T>>> GetAllAsync();
         Task<Result<T>> GetByIdAsync(long id);
-        Task<Result> RemoveAsync(long id);
+        Task<Result<T>> RemoveAsync(long id);
+        Task<Result<T>> MapAndUpdateAsync<M>(long id, M dto);
         Task<Result> UpdateAsync(T entity);
     }
 }
