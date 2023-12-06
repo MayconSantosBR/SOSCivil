@@ -8,5 +8,10 @@ namespace SosCivil.Mvc.Controllers
         {
             return View();
         }
+        public IActionResult Documents()
+        {
+            return View();
+        }
+       
     }
 }
