@@ -3,7 +3,7 @@
 @using SosCivil.Core.Extensions;
 @model SosCivil.Mvc.Models.Solicitacao
 @{
-    var suprimetos = (List<Suprimento>)ViewData["Suprimentos"];
+    var suprimetos = (List<Suprimento>?)ViewData["Suprimentos"];
 }
 
 <!DOCTYPE html>
@@ -13,6 +13,7 @@
         SOLICITAÇÕES
     </h1>
     <div class="card p-4">
+        <a type="button" onclick="voltarPagina()" class="btn btn-dark float-right returnButton"><i class="las la-arrow-left fontsize-20" alt="Voltar"></i></a>
         <form asp-action="Novo">
             <input type="hidden" asp-for="Id">
             <div class="row">
@@ -62,9 +63,18 @@
                     <div class="styled-input wide">
                         <select id="status" asp-for="Status" required>
                             <option value="" selected></option>
-                            @foreach (var status in Enum.GetValues(typeof(StatusEnum)).Cast<StatusEnum>())
-                            {
-                                <option value="@status">@status.GetDescription()</option>
+                            @{
+                                if (Model.Status != null)
+                                {
+                                    <option selected value="@Model.Status">@Model.Status.GetDescription()</option>
+                                }
+                                else
+                                {
+                                    foreach (var status in Enum.GetValues(typeof(StatusEnum)).Cast<StatusEnum>())
+                                    {
+                                        <option value="@status">@status.GetDescription()</option>
+                                    }
+                                }
                             }
                         </select>
                         <label for="status">Status</label>
@@ -75,9 +85,16 @@
                         <select id="suprimento" asp-for="Suprimento" required>
                             <option value="" selected></option>
                             @{
-                                foreach (var suprimento in suprimetos)
+                                if (Model.Suprimento != null)
                                 {
-                                    <option value="@suprimento.Id">@suprimento.NomeItem</option>
+                                    <option selected value="@Model.Suprimento.Id">@Model.Suprimento.NomeItem</option>
+                                }
+                                else
+                                {
+                                    foreach (var suprimento in suprimetos)
+                                    {
+                                        <option value="@suprimento.Id">@suprimento.NomeItem</option>
+                                    }
                                 }
                             }
                         </select>
@@ -85,7 +102,7 @@
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-dark">Salvar</button>
+            <button type="submit" class="btn btn-dark defaultButton">Salvar</button>
         </form>
     </div>
 </body>

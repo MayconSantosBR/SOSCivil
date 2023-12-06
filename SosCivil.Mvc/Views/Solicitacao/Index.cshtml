@@ -9,8 +9,9 @@
     <h1 class="titlePage">
         SOLICITAÇÕES
     </h1>
-    <a type="button" asp-action="Novo" asp-controller="Solicitacao" class="btn btn-dark float-right">Nova Solicitação</a>
     <div class="card">
+        <a type="button" onclick="voltarPagina()" class="btn btn-dark float-right returnButton"><i class="las la-arrow-left fontsize-20" alt="Voltar"></i></a>
+        <a type="button" asp-action="Novo" asp-controller="Solicitacao" class="btn btn-dark float-right addButton"><i class="las la-plus fontsize-20" alt="Nova Solicitação"></i></a>
         <div class="table-responsive table-wrapper-scroll-y">
             <table class="table table-striped mb-0">
                 <thead>
@@ -44,8 +45,12 @@
                                 <td>@solicitacao.DataSolicitacao</td>
                                 <td>@solicitacao.Suprimento.NomeItem</td>
                                 <td class="icons">
-                                    <a href="Solicitacao/Editar/@solicitacao.Id"><i class="las la-pen fontsize-20" alt="Editar"></i></a>
-                                    <a href="Solicitacao/Excluir/@solicitacao.Id"><i class="las la-trash fontsize-20" alt="Excluir"></i></a>
+                                    <div class="w-100 h-100">
+                                        <a href="Solicitacao/Editar/@solicitacao.Id"><i class="las la-pen fontsize-20" alt="Editar"></i></a>
+                                    </div>
+                                    <div class="w-100 h-100">
+                                        <a href="Solicitacao/Excluir/@solicitacao.Id"><i class="las la-trash fontsize-20" alt="Excluir"></i></a>
+                                    </div>
                                 </td>
                             </tr>
                         }
