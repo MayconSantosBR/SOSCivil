@@ -18,6 +18,10 @@
                         <th scope="col">#</th>
                         <th scope="col">Nome Solicitante</th>
                         <th scope="col">CPF/CNPJ Solicitante</th>
+                        <th scope="col">Celular</th>
+                        <th scope="col">Rua</th>
+                        <th scope="col">Bairro</th>
+                        <th scope="col">CEP</th>
                         <th scope="col">Status</th>
                         <th scope="col">Data da Solicitação</th>
                         <th scope="col">Suprimento</th>
@@ -32,6 +36,10 @@
                                 <th scope="row">@solicitacao.Id</th>
                                 <td>@solicitacao.NomeSolicitante</td>
                                 <td>@solicitacao.CpfCnpjSolicitante</td>
+                                <td>@solicitacao.Celular</td>
+                                <td>@solicitacao.Rua</td>
+                                <td>@solicitacao.Bairro</td>
+                                <td>@solicitacao.Cep</td>
                                 <td>@solicitacao.Status.GetDescription()</td>
                                 <td>@solicitacao.DataSolicitacao</td>
                                 <td>@solicitacao.Suprimento.NomeItem</td>
