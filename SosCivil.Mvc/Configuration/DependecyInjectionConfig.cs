@@ -17,6 +17,7 @@ namespace SosCivil.Mvc.Configuration
             services.AddScoped<IPersonService, PersonService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ISolicitacaoService, SolicitacaoService>();
+            services.AddScoped<IRequestService, RequestService>();
             services.AddScoped<IDocumentoService, DocumentoService>();
         }
     }
