@@ -28,24 +28,27 @@
                 </thead>
                 <tbody>
                     @{
-                        foreach (var suprimento in suprimentos)
+                        if (suprimentos != null && suprimentos.Any())
                         {
-                            <tr>
-                                <th scope="row">@suprimento.Id</th>
-                                <td>@suprimento.Nome</td>
-                                <td>@suprimento.Descricao</td>
-                                <td>@suprimento.UnidadeDeMedida.GetDescription()</td>
-                                <td>@suprimento.Quantidade</td>
-                                <td>@suprimento.QuantidadeTotal</td>
-                                <td class="icons">
-                                    <div class="w-100 h-100">
-                                        <a href="Suprimento/Editar/@suprimento.Id"><i class="las la-pen fontsize-20" alt="Editar"></i></a>
-                                    </div>
-                                    <div class="w-100 h-100">
-                                        <a href="Suprimento/Excluir/@suprimento.Id"><i class="las la-trash fontsize-20" alt="Excluir"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
+                            foreach (var suprimento in suprimentos)
+                            {
+                                <tr>
+                                    <th scope="row">@suprimento.Id</th>
+                                    <td>@suprimento.Nome</td>
+                                    <td>@suprimento.Descricao</td>
+                                    <td>@suprimento.UnidadeDeMedida.GetDescription()</td>
+                                    <td>@suprimento.Quantidade</td>
+                                    <td>@suprimento.QuantidadeTotal</td>
+                                    <td class="icons">
+                                        <div class="w-100 h-100">
+                                            <a href="Suprimento/Editar/@suprimento.Id"><i class="las la-pen fontsize-20" alt="Editar"></i></a>
+                                        </div>
+                                        <div class="w-100 h-100">
+                                            <a href="Suprimento/Excluir/@suprimento.Id"><i class="las la-trash fontsize-20" alt="Excluir"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
                         }
                     }
                 </tbody>

@@ -1,0 +1,66 @@
+﻿@using SosCivil.Api.Data.Enums
+@using SosCivil.Core.Data.Enums;
+@using SosCivil.Core.Extensions;
+@model SosCivil.Mvc.Models.Entrega
+@{
+    var solicitacoes = (List<Solicitacao>?)ViewData["Solicitacoes"];
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <h1 class="titlePage">
+        ENTREGAS
+    </h1>
+    <div class="card p-4">
+        <a type="button" onclick="voltarPagina()" class="btn btn-dark float-right returnButton"><i class="las la-arrow-left fontsize-20" alt="Voltar"></i></a>
+        <form asp-action="Novo">
+            <input type="hidden" asp-for="Id">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="styled-input wide">
+                        <select id="solicitacao" asp-for="Solicitacao" required>
+                            <option value="" selected></option>
+                            @{
+                                if (Model.Solicitacao != null)
+                                {
+                                    <option selected value="@Model.Solicitacao.Id">@Model.Solicitacao.Id - @Model.Solicitacao.NomeSolicitante</option>
+                                }
+                                else
+                                {
+                                    foreach (var solicitacao in solicitacoes)
+                                    {
+                                        <option value="@solicitacao.Id">@solicitacao.Id - @solicitacao.NomeSolicitante</option>
+                                    }
+                                }
+                            }
+                        </select>
+                        <label for="suprimento">Solicitações</label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="styled-input wide">
+                        <select id="status" asp-for="Status" required>
+                            @{
+                                @foreach (var statusDescription in EnumExtension.GetEnumDescriptionsWithNull()) 
+                                {
+                                    if (Model.Status.GetDescription() == statusDescription)
+                                    {
+                                        <option selected value="@statusDescription">@statusDescription</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@statusDescription">@statusDescription</option>
+                                    }
+                                }
+                            }
+                        </select>
+                        <label for="status">Status</label>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-dark defaultButton">Salvar</button>
+        </form>
+    </div>
+</body>
+</html>
