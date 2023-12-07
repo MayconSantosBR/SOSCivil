@@ -1,3 +1,4 @@
+using Amazon;
 using Amazon.S3;
 using DevIO.App.Configurations;
 using Microsoft.EntityFrameworkCore;
@@ -20,6 +21,15 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<MainContext>(options => options.UseNpgsql(appConfig.GetSetting("ConnectionStrings:SosCivil")));
 builder.Services.ResolveDependencies();
+
+builder.Services.AddScoped<IAmazonS3>(provider => new AmazonS3Client(
+    appConfig.GetSetting("ConnectionStrings:Amazon:AccessKey"),
+    appConfig.GetSetting("ConnectionStrings:Amazon:SecretKey"),
+    RegionEndpoint.USEast1)
+);
+
+
+builder.Services.AddScoped<IBucketService, BucketService>();
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<ICobradeService, CobradeService>();
