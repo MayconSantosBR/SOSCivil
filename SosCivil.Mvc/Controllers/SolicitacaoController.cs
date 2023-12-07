@@ -95,5 +95,27 @@ namespace SosCivil.Mvc.Controllers
         {
             return View(model);
         }
+
+        public IActionResult Editar(long id)
+        {
+            var model = new Solicitacao
+            {
+                Id = 1,
+                NomeSolicitante = "João da Silva",
+                CpfCnpjSolicitante = "123.456.789-00",
+                Celular = "(11) 9 9999-9999",
+                Rua = "Rua dos Bobos",
+                Bairro = "Bairro dos Bobos",
+                Cep = "99999-999",
+                Status = StatusEnum.Delivered,
+                DataSolicitacao = DateTime.Now,
+                Suprimento = new Suprimento
+                {
+                    Id = 1,
+                    NomeItem = "Água"
+                }
+            };
+            return View("Novo", model);
+        }
     }
 }

@@ -1,5 +1,7 @@
 "use strict";
 
 $("#status").val("");
-$("#tipoPessoa").val("");
 
+function voltarPagina() {
+    window.history.back();
+}

@@ -358,7 +358,6 @@ a {
 
     .icons i {
         color: var(--secondaryColor);
-        margin: 0 10px;
     }
 
 .homeCards {
@@ -377,9 +376,9 @@ a {
     text-align: center;
 }
 
-.cardsHome h2 {
-    font-family: "Bebas Neue", sans-serif;
-}
+    .cardsHome h2 {
+        font-family: "Bebas Neue", sans-serif;
+    }
 
 .card {
     border-radius: 10px;
@@ -426,7 +425,7 @@ input:focus ~ label, textarea:focus ~ label, select:focus ~ label, input:valid ~
     color: var(--secondaryColor);
     padding: 0 0 1rem 15px;
     position: absolute;
-    top:10px;
+    top: 10px;
     left: 0;
     -webkit-transition: all 0.25s ease;
     transition: all 0.25s ease;
@@ -449,11 +448,13 @@ textarea {
     color: black;
     border-radius: 4px;
 }
+
     select:focus,
     input:focus,
     textarea:focus {
         outline: 0;
     }
+
         select:focus ~ span,
         input:focus ~ span,
         textarea:focus ~ span {
@@ -461,3 +462,37 @@ textarea {
             -webkit-transition: all 0.075s ease;
             transition: all 0.075s ease;
         }
+
+.returnButton {
+    position: absolute;
+    top: -40px;
+    left: 15px;
+    border-radius: 50%;
+    padding: 6px;
+    width: 34px;
+    height: 34px;
+    background: var(--secondaryColor);
+}
+
+.addButton {
+    position: absolute;
+    top: -40px;
+    left: calc(100% - 49px);
+    border-radius: 50%;
+    padding: 6px;
+    width: 34px;
+    height: 34px;
+    background: var(--secondaryColor);
+}
+
+    .addButton:hover, .returnButton:hover, .defaultButton:hover {
+        background: var(--primaryColor);
+    }
+
+.defaultButton {
+    background: var(--secondaryColor);
+    position: relative;
+    float: right;
+    width: 150px;
+    border-radius: 20px;
+}
