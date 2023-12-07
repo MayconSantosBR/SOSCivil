@@ -1,4 +1,5 @@
-﻿using SosCivil.Api.Data.Enums;
+﻿using SosCivil.Api.Data.Entities.Mongo;
+using SosCivil.Api.Data.Enums;
 
 namespace SosCivil.Api.Models.Dtos.Controllers
 {
@@ -8,6 +9,6 @@ namespace SosCivil.Api.Models.Dtos.Controllers
         public long EstablishmentId { get; set; }
         public long UserId { get; set; }
         public StatusEnum Status { get; set; }
-        public List<string>? Documents { get; set; }
+        public List<OccurrenceDocuments>? Documents { get; set; }
     }
 }

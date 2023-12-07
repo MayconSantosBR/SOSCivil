@@ -4,12 +4,12 @@ using SosCivil.Api.Models.Dtos.Controllers;
 
 namespace SosCivil.Api.Models.AutoMapper.Profiles
 {
-    public class UserProfiles : Profile
+    public class UserProfile : Profile
     {
-        public UserProfiles()
+        public UserProfile()
         {
-            CreateMap<UserDto, User>().ReverseMap();
-
+            CreateMap<UserDto, User>()
+                .ReverseMap();
         }
     }
 }

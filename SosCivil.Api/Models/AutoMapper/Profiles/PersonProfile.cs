@@ -8,7 +8,8 @@ namespace SosCivil.Api.Models.AutoMapper.Profiles
     {
         public PersonProfile()
         {
-            CreateMap<PersonDto, Person>().ReverseMap();
+            CreateMap<PersonDto, Person>()
+                .ReverseMap();
         }
     }
 }

@@ -2,5 +2,6 @@
 {
     public interface IMongoService
     {
+        Task<T> CreateAsync<T>(string collectionName, T entity);
     }
 }
