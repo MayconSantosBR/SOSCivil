@@ -60,7 +60,7 @@ namespace SosCivil.Api.Controllers
             }
         }
 
-        [Route("ocorrences/{id}/documents")]
+        [Route("occurrences/{id}/documents")]
         [HttpGet]
         public async Task<ActionResult> GetDocuments([FromRoute] long id)
         {
