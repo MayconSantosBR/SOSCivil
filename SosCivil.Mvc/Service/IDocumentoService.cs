@@ -5,5 +5,6 @@ namespace SosCivil.Mvc.Service
     public interface IDocumentoService
     {
         Task<string> NovoDocumento(IFormFile file);
+        Task<List<OcurrenceModel>> GetAllOcurrences();
     }
 }

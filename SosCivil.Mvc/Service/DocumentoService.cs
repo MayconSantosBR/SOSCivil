@@ -14,6 +14,22 @@ namespace SosCivil.Mvc.Service
             _httpClient = httpClient;
         }
 
+        public async Task<List<OcurrenceModel>> GetAllOcurrences()
+        {
+            try
+            {
+                var response = await _httpClient.GetAsync("https://localhost:7021/api/occurrences");
+                var listOcurrences = JsonSerializer.Deserialize<List<OcurrenceModel>>(await response.Content.ReadAsStringAsync());
+                return listOcurrences;
+
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+
+        }
+
         public async Task<string> NovoDocumento(IFormFile file)
         {
             var url = string.Empty;

@@ -74,5 +74,10 @@ namespace SosCivil.Api.Services
 
             return Result.Ok(mongoEntity.Documents);
         }
+
+        public async Task<Result<List<Occurrence>>> GetAll()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

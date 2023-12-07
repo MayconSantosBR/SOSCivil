@@ -9,6 +9,7 @@ namespace SosCivil.Api.Services.Base
     public class SosCivilServiceBase<T> : ISosCivilServiceBase<T> where T : BaseEntity
     {
         protected readonly IRepository<T> _repository;
+
         protected readonly IMapper _mapper;
 
         protected SosCivilServiceBase(IRepository<T> repository, IMapper mapper)

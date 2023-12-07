@@ -11,21 +11,17 @@ namespace SosCivil.Mvc.Controllers
         {
             _documentoService = documentoService;
         }
-        public IActionResult Index()
+        public IActionResult Index(bool show = false, string url = null)
         {
-            var documentos = new List<Documento>();
-            ViewData["Documentos"] = documentos;
-            return View();
-        }
-        public IActionResult Excluir(long id)
-        {
+            ViewData["show"] = show;
+
+            ViewData["url"] = string.IsNullOrEmpty(url) ? string.Empty : url;
 
             return View();
         }
 
         public async Task<IActionResult> Novo()
         {
-
             return View();
         }
 
@@ -35,8 +31,12 @@ namespace SosCivil.Mvc.Controllers
             try
             {
                 var url = await _documentoService.NovoDocumento(file);
-                
-                return View("Index");
+
+                return RedirectToAction("Index", "Documento", new
+                {
+                    show = true,
+                    url = url
+                });
             }
             catch
             {

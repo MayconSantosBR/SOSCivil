@@ -8,5 +8,6 @@ namespace SosCivil.Api.Services.Interfaces
     public interface IOccurrenceService : ISosCivilServiceBase<Occurrence>
     {
         Task<Result<List<OccurrenceDocuments>?>> GetDocumentByIdAsync(long id);
+        Task<Result<List<Occurrence>>> GetAll();
     }
 }

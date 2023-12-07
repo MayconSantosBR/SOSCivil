@@ -1,7 +1,9 @@
 ﻿@using SosCivil.Core.Extensions;
 @{
     ViewData["Title"] = "Documentos";
-    var documentos = (List<Documento>?)ViewData["Documentos"];
+    var show = ViewData["show"] as bool?;
+    bool show2 = show ?? false;
+    var url = ViewData["url"] as string;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -26,29 +28,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @{
-                        if (documentos != null && documentos.Any())
-                        {
-                            foreach (var documento in documentos)
-                            {
-                                <tr>
-                                    <th scope="row">@documento.Id</th>
-                                    <td>@documento.Descricao</td>
-                                    <td>@documento.Solicitacao.NomeSolicitante</td>
-                                    <td>@documento.Solicitacao.CpfCnpjSolicitante</td>
-                                    <td>@documento.Solicitacao.DataSolicitacao</td>
-                                    <td class="icons">
-                                        <div class="w-100 h-100">
-                                            <a href="@documento.DownloadLink"><i class="las la-file-download fontsize-20" alt="Download"></i></a>
-                                        </div>
-                                        <div class="w-100 h-100">
-                                            <a href="Documento/Excluir/@documento.Id"><i class="las la-trash fontsize-20" alt="Excluir"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            }
-                        }
+                    @if (show2)
+                    {
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Vistoria</td>
+                            <td>Sergio</td>
+                            <td>12345678901</td>
+                            <td>07/12/2023</td>
+                            <td class="icons">
+                                <div class="w-100 h-100">
+                                    <a href="@url"><i class="las la-file-download fontsize-20" alt="Download"></i></a>
+                                </div>
+                                <div class="w-100 h-100">
+                                    <a href=""><i class="las la-trash fontsize-20" alt="Excluir"></i></a>
+                                </div>
+                            </td>
+                        </tr>
                     }
+
+
                 </tbody>
             </table>
         </div>
