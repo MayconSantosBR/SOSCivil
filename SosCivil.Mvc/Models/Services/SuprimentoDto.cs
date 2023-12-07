@@ -1,15 +1,10 @@
 ﻿using Newtonsoft.Json;
-using SosCivil.Api.Data.Enums;
 using SosCivil.Core.Data.Enums;
-using SosCivil.Mvc.Controllers;
 
-namespace SosCivil.Mvc.Models
+namespace SosCivil.Mvc.Models.Services
 {
-    public class Suprimento
+    public class SuprimentoDto
     {
-        [JsonProperty("id")]
-        public long Id { get; set; }
-
         [JsonProperty("name")]
         public string Nome { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿using SosCivil.Mvc.Models;
 
-namespace SosCivil.Mvc.Service
+namespace SosCivil.Mvc.Service.Interfaces
 {
     public interface IPersonService
     {

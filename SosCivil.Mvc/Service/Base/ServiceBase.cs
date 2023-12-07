@@ -1,12 +1,12 @@
 ﻿using SosCivil.Mvc.Extensions;
 
-namespace SosCivil.Mvc.Service
+namespace SosCivil.Mvc.Service.Base
 {
-    public abstract class Service
+    public abstract class ServiceBase
     {
         protected bool TratarErrosResponse(HttpResponseMessage response)
         {
-            switch((int)response.StatusCode)
+            switch ((int)response.StatusCode)
             {
                 case 401:
                 case 403:

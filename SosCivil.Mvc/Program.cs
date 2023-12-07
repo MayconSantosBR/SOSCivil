@@ -2,7 +2,6 @@ using SosCivil.Mvc.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
 builder.Services.AddIdentityConfiguration();
 
 builder.Services.AddMvcConfiguration();

@@ -1,6 +1,6 @@
 ﻿using SosCivil.Mvc.Models.Auth;
 
-namespace SosCivil.Mvc.Service
+namespace SosCivil.Mvc.Service.Interfaces
 {
     public interface IAuthService
     {

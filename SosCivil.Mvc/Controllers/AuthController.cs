@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SosCivil.Mvc.Models;
 using SosCivil.Mvc.Models.Auth;
 using SosCivil.Mvc.Models.Enums;
-using SosCivil.Mvc.Service;
+using SosCivil.Mvc.Service.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 

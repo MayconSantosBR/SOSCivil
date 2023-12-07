@@ -1,11 +1,13 @@
 ﻿using SosCivil.Mvc.Models;
 using SosCivil.Mvc.Models.Auth;
+using SosCivil.Mvc.Service.Interfaces;
+using SosCivil.Mvc.Service.Base;
 using System.Text;
 using System.Text.Json;
 
 namespace SosCivil.Mvc.Service
 {
-    public class AuthService : Service, IAuthService
+    public class AuthService : ServiceBase, IAuthService
     {
         private readonly HttpClient _httpClient;
 
