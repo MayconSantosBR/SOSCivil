@@ -15,6 +15,8 @@ namespace SosCivil.Mvc.Configuration
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IUser, AspNetUser>();
             services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ISolicitacaoService, SolicitacaoService>();
         }
     }
 }
