@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SosCivil.Api.Data.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -28,6 +29,16 @@ namespace SosCivil.Core.Extensions
             }
 
             return description;
+        }
+
+        public static IEnumerable<string> GetEnumDescriptionsWithNull()
+        {
+            yield return null;
+
+            foreach (var value in Enum.GetValues(typeof(StatusEnum)))
+            {
+                yield return ((StatusEnum)value).GetDescription();
+            }
         }
     }
 }

@@ -62,19 +62,18 @@
                 <div class="col-md-6 col-sm-12">
                     <div class="styled-input wide">
                         <select id="status" asp-for="Status" required>
-                            <option value="" selected></option>
-                            @{
-                                if (Model.Status != null)
+                            @{                        
+                                if (ViewContext.HttpContext.Request.Path != "/Solicitacao/Novo")
                                 {
-                                    <option selected value="@Model.Status">@Model.Status.GetDescription()</option>
+                                    <option selected value="@Model.Status.GetDescription()">@Model.Status.GetDescription()</option>
                                 }
                                 else
                                 {
-                                    foreach (var status in Enum.GetValues(typeof(StatusEnum)).Cast<StatusEnum>())
+                                    @foreach (var statusDescription in EnumExtension.GetEnumDescriptionsWithNull())
                                     {
-                                        <option value="@status">@status.GetDescription()</option>
+                                        <option value="@statusDescription">@statusDescription</option>
                                     }
-                                }
+                                }         
                             }
                         </select>
                         <label for="status">Status</label>
@@ -87,13 +86,13 @@
                             @{
                                 if (Model.Suprimento != null)
                                 {
-                                    <option selected value="@Model.Suprimento.Id">@Model.Suprimento.NomeItem</option>
+                                    <option selected value="@Model.Suprimento.Id">@Model.Suprimento.Nome</option>
                                 }
                                 else
                                 {
                                     foreach (var suprimento in suprimetos)
                                     {
-                                        <option value="@suprimento.Id">@suprimento.NomeItem</option>
+                                        <option value="@suprimento.Id">@suprimento.Nome</option>
                                     }
                                 }
                             }

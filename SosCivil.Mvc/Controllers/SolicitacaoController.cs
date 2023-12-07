@@ -24,7 +24,7 @@ namespace SosCivil.Mvc.Controllers
                     Suprimento = new Suprimento
                     {
                         Id = 1,
-                        NomeItem = "Água"
+                        Nome = "Água"
                     }
                 },
                 new Solicitacao
@@ -41,7 +41,7 @@ namespace SosCivil.Mvc.Controllers
                     Suprimento = new Suprimento
                     {
                         Id = 2,
-                        NomeItem = "Alimento"
+                        Nome = "Alimento"
                     }
                 },
                 new Solicitacao
@@ -58,7 +58,7 @@ namespace SosCivil.Mvc.Controllers
                     Suprimento = new Suprimento
                     {
                         Id = 3,
-                        NomeItem = "Remédio"
+                        Nome = "Remédio"
                     }
                 }
             };
@@ -74,17 +74,17 @@ namespace SosCivil.Mvc.Controllers
                 new Suprimento
                 {
                     Id = 1,
-                    NomeItem = "Água"
+                    Nome = "Água"
                 },
                 new Suprimento
                 {
                     Id = 2,
-                    NomeItem = "Alimento"
+                    Nome = "Alimento"
                 },
                 new Suprimento
                 {
                     Id = 3,
-                    NomeItem = "Remédio"
+                    Nome = "Remédio"
                 }
             };
             return View(model);
@@ -112,7 +112,7 @@ namespace SosCivil.Mvc.Controllers
                 Suprimento = new Suprimento
                 {
                     Id = 1,
-                    NomeItem = "Água"
+                    Nome = "Água"
                 }
             };
             return View("Novo", model);

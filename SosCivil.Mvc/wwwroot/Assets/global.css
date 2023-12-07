@@ -433,7 +433,7 @@ input:focus ~ label, textarea:focus ~ label, select:focus ~ label, input:valid ~
 }
 
 .styled-input.wide {
-    width: 650px;
+    width: 100%;
     max-width: 100%;
 }
 
@@ -495,4 +495,13 @@ textarea {
     float: right;
     width: 150px;
     border-radius: 20px;
+}
+
+.cardsHome:hover {
+    background-color: var(--nav);
+}
+
+.icons i {
+    font-size: 24px;
+    margin: 0 5px;
 }

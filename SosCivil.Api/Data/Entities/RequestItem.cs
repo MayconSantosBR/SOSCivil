@@ -6,8 +6,8 @@ namespace SosCivil.Api.Data.Entities
     {
         public long ItemId { get; set; }
         public Item Item { get; set; }
-        public long RequestId { get; set; }
-        public Request Request { get; set; }
+        public long OccurrenceId { get; set; }
+        public Occurrence Occurrence { get; set; }
         public int Quantity { get; set; }
     }
 }
