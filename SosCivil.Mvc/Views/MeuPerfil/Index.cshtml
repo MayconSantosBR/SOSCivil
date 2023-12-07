@@ -4,34 +4,6 @@
     ViewBag.Title = "Meu Perfil";
 }
 
-<style>
-    .button {
-        display: inline-block;
-        padding: 10px 15px;
-        font-size: 16px;
-        cursor: pointer;
-        text-align: center;
-        text-decoration: none;
-        outline: none;
-        color: #fff;
-        background-color: #fd7e14;
-        border: none;
-        border-radius: 5px;
-        box-shadow: 0 5px #999;
-    }
-
-        .button:hover {
-            background-color: #fd7e14
-        }
-
-        .button:active {
-            text-decoration: none;
-            background-color: #666;
-            box-shadow: 0 1px #666;
-            transform: translateY(4px);
-        }
-</style>
-
 <h1>Meu Perfil</h1>
 
 <div>
@@ -52,5 +24,5 @@
 </div>
 
 <div class="my-4">
-    <a asp-action="Index" asp-controller="Home" class="button">Voltar</a>
+    <a type="button" onclick="voltarPagina()" class="btn btn-dark float-right returnButtonMeuPerfil"><i class="las la-arrow-left fontsize-20" alt="Voltar"></i></a>
 </div>
