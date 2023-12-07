@@ -2,70 +2,59 @@
 using SosCivil.Api.Data.Enums;
 using SosCivil.Core.Data.Enums;
 using SosCivil.Mvc.Models;
+using SosCivil.Mvc.Service.Interfaces;
 
 namespace SosCivil.Mvc.Controllers
 {
     public class SuprimentoController : Controller
     {
-        public IActionResult Index()
+        private readonly IItemService _itemService;
+
+        public SuprimentoController(IItemService itemService)
         {
-            var suprimentos = new List<Suprimento>
-            {
-                new Suprimento {
-                    Id = 1,
-                    Nome = "Água",
-                    Descricao = "Água potável",
-                    Quantidade = 10,
-                    QuantidadeTotal = 100,
-                    UnidadeDeMedida = UnityOfMeasurementEnum.Liters,
-                },
-                new Suprimento
-                {
-                    Id = 2,
-                    Nome = "Alimento",
-                    Descricao = "Alimento não perecível",
-                    Quantidade = 10,
-                    QuantidadeTotal = 100,
-                    UnidadeDeMedida = UnityOfMeasurementEnum.Kilograms,
-                },
-                new Suprimento
-                {
-                    Id = 3,
-                    Nome = "Remédio",
-                    Descricao = "Remédio para dor de cabeça",
-                    Quantidade = 10,
-                    QuantidadeTotal = 100,
-                    UnidadeDeMedida = UnityOfMeasurementEnum.Unit,
-                }
-            };
-            ViewData["Suprimentos"] = suprimentos;
+            _itemService = itemService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            ViewData["Suprimentos"] = await _itemService.PegarSuprimentosAssincrono();
             return View();
         }
 
         public IActionResult Novo()
         {
+            ViewData["Acao"] = "Novo";
+
             var model = new Suprimento();
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Novo(Suprimento model)
+        public async Task<IActionResult> Novo(Suprimento model)
         {
-            return View(model);
+            await _itemService.CriarSuprimentoAssincrono(model);
+            return RedirectToAction("Index");
         }
 
-        public IActionResult Editar(long id)
+        public async Task<IActionResult> Editar(long id)
         {
-            var model = new Suprimento
-            {
-                Id = 1,
-                Nome = "Água",
-                Descricao = "Água potável",
-                Quantidade = 10,
-                QuantidadeTotal = 100,
-                UnidadeDeMedida = UnityOfMeasurementEnum.Liters,
-            };
+            ViewData["Acao"] = "EditarItem";
+
+            var model = await _itemService.PegarSuprimentoPorIdAssincrono(id);
             return View("Novo", model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditarItem(Suprimento model)
+        {
+            await _itemService.EditarSuprimentoAssincrono(model);
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Excluir(long id)
+        {
+            await _itemService.ExcluirSuprimentoAssincrono(id);
+            return RedirectToAction("Index");
         }
     }
 }

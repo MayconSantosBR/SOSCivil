@@ -3,6 +3,10 @@
 @using SosCivil.Core.Extensions;
 @model SosCivil.Mvc.Models.Suprimento
 
+@{
+    var acao = (string)ViewData["Acao"];
+}
+
 <!DOCTYPE html>
 <html lang="en">
 <body>
@@ -11,7 +15,7 @@
     </h1>
     <div class="card p-4">
         <a type="button" onclick="voltarPagina()" class="btn btn-dark float-right returnButton"><i class="las la-arrow-left fontsize-20" alt="Voltar"></i></a>
-        <form asp-action="Novo">
+        <form asp-controller="Suprimento" asp-action="@acao">
             <input type="hidden" asp-for="Id">
             <div class="row">
                 <div class="col-md-6 col-sm-12">

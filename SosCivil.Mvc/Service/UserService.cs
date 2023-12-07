@@ -2,6 +2,7 @@
 using System.Text.Json;
 using System.Text;
 using SosCivil.Mvc.Models;
+using SosCivil.Mvc.Service.Interfaces;
 
 namespace SosCivil.Mvc.Service
 {

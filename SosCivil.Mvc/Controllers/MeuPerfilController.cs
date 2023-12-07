@@ -2,6 +2,7 @@
 using Microsoft.IdentityModel.Tokens;
 using SosCivil.Mvc.Extensions;
 using SosCivil.Mvc.Service;
+using SosCivil.Mvc.Service.Interfaces;
 
 namespace SosCivil.Mvc.Controllers
 {
