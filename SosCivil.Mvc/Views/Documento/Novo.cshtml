@@ -1,0 +1,157 @@
+﻿@model Documento
+<link rel="stylesheet" href="~/css/documentoupload.css" />
+@* <form asp-action="Novo" method="post" id="file-upload-form" enctype="multipart/form-data" class="uploader">
+
+    <div class="mb-3">
+        <label for="formFile" class="form-label">Default file input example</label>
+        <input asp-for="File" id="file-upload" type="file" name="fileUpload" />
+    </div>
+</form> *@
+
+<style>
+    .file-upload {
+        display: block;
+        text-align: center;
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 12px;
+    }
+
+        .file-upload .file-select {
+            display: block;
+            border: 2px solid #dce4ec;
+            color: #34495e;
+            cursor: pointer;
+            height: 40px;
+            line-height: 40px;
+            text-align: left;
+            background: #FFFFFF;
+            overflow: hidden;
+            position: relative;
+        }
+
+            .file-upload .file-select .file-select-button {
+                background: #dce4ec;
+                padding: 0 10px;
+                display: inline-block;
+                height: 40px;
+                line-height: 40px;
+            }
+
+            .file-upload .file-select .file-select-name {
+                line-height: 40px;
+                display: inline-block;
+                padding: 0 10px;
+            }
+
+            .file-upload .file-select:hover {
+                border-color: #34495e;
+                transition: all .2s ease-in-out;
+                -moz-transition: all .2s ease-in-out;
+                -webkit-transition: all .2s ease-in-out;
+                -o-transition: all .2s ease-in-out;
+            }
+
+                .file-upload .file-select:hover .file-select-button {
+                    background: #34495e;
+                    color: #FFFFFF;
+                    transition: all .2s ease-in-out;
+                    -moz-transition: all .2s ease-in-out;
+                    -webkit-transition: all .2s ease-in-out;
+                    -o-transition: all .2s ease-in-out;
+                }
+
+        .file-upload.active .file-select {
+            border-color: #fd7e14;
+            transition: all .2s ease-in-out;
+            -moz-transition: all .2s ease-in-out;
+            -webkit-transition: all .2s ease-in-out;
+            -o-transition: all .2s ease-in-out;
+        }
+
+            .file-upload.active .file-select .file-select-button {
+                background: #fd7e14;
+                color: #FFFFFF;
+                transition: all .2s ease-in-out;
+                -moz-transition: all .2s ease-in-out;
+                -webkit-transition: all .2s ease-in-out;
+                -o-transition: all .2s ease-in-out;
+            }
+
+        .file-upload .file-select input[type=file] {
+            z-index: 100;
+            cursor: pointer;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+
+        .file-upload .file-select.file-select-disabled {
+            opacity: 0.65;
+        }
+
+            .file-upload .file-select.file-select-disabled:hover {
+                cursor: default;
+                display: block;
+                border: 2px solid #dce4ec;
+                color: #34495e;
+                cursor: pointer;
+                height: 40px;
+                line-height: 40px;
+                margin-top: 5px;
+                text-align: left;
+                background: #FFFFFF;
+                overflow: hidden;
+                position: relative;
+            }
+
+                .file-upload .file-select.file-select-disabled:hover .file-select-button {
+                    background: #dce4ec;
+                    color: #666666;
+                    padding: 0 10px;
+                    display: inline-block;
+                    height: 40px;
+                    line-height: 40px;
+                }
+
+                .file-upload .file-select.file-select-disabled:hover .file-select-name {
+                    line-height: 40px;
+                    display: inline-block;
+                    padding: 0 10px;
+                }
+</style>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+
+<form asp-action="Novo" method="post" enctype="multipart/form-data">
+    <div class="file-upload">
+        <div class="file-select">
+            <div class="file-select-button" id="fileName">Selecione um arquivo</div>
+            <div class="file-select-name" id="noFile">Nenhum documento selecionado...</div>
+            <input asp-for="File" type="file" name="File" id="chooseFile">
+        </div>
+    </div>
+    <input class="my-2" type="submit" value="Enviar" />
+</form>
+
+
+
+<script>
+
+    $('#chooseFile').bind('change', function () {
+        var filename = $("#chooseFile").val();
+        if (/^\s*$/.test(filename)) {
+            $(".file-upload").removeClass('active');
+            $("#noFile").text("Nenhum documento selecionado...");
+        }
+        else {
+            $(".file-upload").addClass('active');
+            $("#noFile").text(filename.replace("C:\\fakepath\\", ""));
+        }
+    });
+</script>
+
+
+
