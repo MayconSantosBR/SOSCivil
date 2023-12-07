@@ -9,39 +9,39 @@
     <div class="left-side">
         <form asp-controller="Auth" asp-action="Registro" method="post" class="login-form">
             <h1>Nova conta</h1>
-            <div class="form-row">
-                <div class="form-column">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
                     <label asp-for="Nome" class="form-label">Nome</label>
                     <input asp-for="Nome" type="text" class="form-control">
                     <span asp-validation-for="Nome" class="text-danger"></span>
                 </div>
-                <div class="form-column">
+                <div class="col-md-6 col-sm-12">
                     <label asp-for="Email" class="form-label">Email</label>
                     <input asp-for="Email" type="email" class="form-control">
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
             </div>
 
-            <div class="form-row">
-                <div class="form-column">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
                     <label asp-for="Senha" class="form-label">Senha</label>
                     <input asp-for="Senha" type="password" class="form-control">
                     <span asp-validation-for="Senha" class="text-danger"></span>
                 </div>
-                <div class="form-column">
+                <div class="col-md-6 col-sm-12">
                     <label asp-for="SenhaConfirmacao" class="form-label">Confirme sua Senha</label>
                     <input asp-for="SenhaConfirmacao" type="password" class="form-control">
                     <span asp-validation-for="SenhaConfirmacao" class="text-danger"></span>
                 </div>
             </div>
 
-            <div class="form-row">
-                <div class="form-column">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
                     <label asp-for="Cellphone" class="form-label">Telefone</label>
                     <input asp-for="Cellphone" type="text" class="form-control">
                     <span asp-validation-for="Cellphone" class="text-danger"></span>
                 </div>
-                <div class="form-column">
+                <div class="col-md-6 col-sm-12">
                     <label asp-for="CpfCnpj" class="form-label">CPF</label>
                     <input asp-for="CpfCnpj" type="text" class="form-control">
                     <span asp-validation-for="CpfCnpj" class="text-danger"></span>

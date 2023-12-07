@@ -13,13 +13,13 @@
     <div class="right-side">
         <form method="post" class="login-form">
             <h1>Login</h1>
-            <div>
+            <div class="col-md-12 col-sm-12">
                 <label asp-for="Email" class="form-label">Email</label>
                 <input asp-for="Email" type="email" class="form-control">
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
 
-            <div>
+            <div class="col-md-12 col-sm-12">
                 <label asp-for="Senha" class="form-label">Senha</label>
                 <input asp-for="Senha" type="password" class="form-control">
                 <span asp-validation-for="Senha" class="text-danger"></span>

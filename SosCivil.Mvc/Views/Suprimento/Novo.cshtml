@@ -24,7 +24,7 @@
                     <div class="styled-input wide">
                         <select id="unidadeDeMedida" asp-for="UnidadeDeMedida" required>
                             @{
-                                @foreach (var unidadeDescription in EnumExtension.GetEnumDescriptionsWithNull())
+                                @foreach (var unidadeDescription in EnumExtension.GetUnityMeasurementEnumDescriptionsWithNull())
                                 {
                                     if (Model.UnidadeDeMedida.GetDescription() == unidadeDescription)
                                     {

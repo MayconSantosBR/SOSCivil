@@ -42,7 +42,7 @@
                     <div class="styled-input wide">
                         <select id="status" asp-for="Status" required>
                             @{
-                                @foreach (var statusDescription in EnumExtension.GetEnumDescriptionsWithNull()) 
+                                @foreach (var statusDescription in EnumExtension.GetStatusEnumDescriptionsWithNull()) 
                                 {
                                     if (Model.Status.GetDescription() == statusDescription)
                                     {
