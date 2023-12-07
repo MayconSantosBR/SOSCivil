@@ -12,6 +12,7 @@ namespace SosCivil.Api.Data.Entities
         public long UserId { get; set; }
         public User User { get; set; }
         public StatusEnum Status { get; set; }
+        public long RequestItemId { get; set; }
         public ICollection<RequestItem> RequestItem { get; set; }
     }
 }
