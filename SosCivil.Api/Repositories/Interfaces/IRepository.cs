@@ -8,6 +8,7 @@ namespace SosCivil.Api.Repositories.Interfaces
         Task<TEntity> CreateAsync(TEntity entity);
         Task<List<TEntity>> GetAllAsync();
         Task<IEnumerable<TEntity>> Get(Expression<Func<TEntity, bool>> predicate);
+        Task<TEntity> GetFirstOrDefault(Expression<Func<TEntity, bool>> predicate);
         Task<TEntity> GetByIdAsync(long id);
         Task Update(TEntity entity);
         Task RemoveAsync(long id);

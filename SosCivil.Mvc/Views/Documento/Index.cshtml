@@ -1,43 +1,57 @@
-﻿@{
+﻿@using SosCivil.Core.Extensions;
+@{
     ViewData["Title"] = "Documentos";
+    var documentos = (List<Documento>?)ViewData["Documentos"];
 }
-
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <body>
     <h1 class="titlePage">
-        DOCUMENTOS
+        SOLICITAÇÕES
     </h1>
-    <a href="@Url.Action("Documents")" style="background-color: orange; color: black; border: none;" class="btn btn-primary">Cadastrar Documento</a>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Documento</th>
-                <th scope="col">Pessoa Interesse</th>
-                <th scope="col">Usuario Responsavel</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Edificio Agua Luz</td>
-                <td>João Vitor</td>
-                <td>Vinicios Silva</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Edificio Drumont</td>
-                <td>Vitoria Amaral</td>
-                <td>Vinicios Silva</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Loja Da Luz</td>
-                <td>Ronald Arante</td>
-                <td>Vinicios Silva</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="card">
+        <a type="button" onclick="voltarPagina()" class="btn btn-dark float-right returnButton"><i class="las la-arrow-left fontsize-20" alt="Voltar"></i></a>
+        <a type="button" asp-action="Novo" asp-controller="Documento" class="btn btn-dark float-right addButton"><i class="las la-plus fontsize-20" alt="Adicionar Documento"></i></a>
+        <div class="table-responsive table-wrapper-scroll-y">
+            <table class="table table-striped mb-0">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Nome da solicitação</th>
+                        <th scope="col">Documento do solicitante</th>
+                        <th scope="col">Data da solicitação</th>
+
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if (documentos != null && documentos.Any())
+                        {
+                            foreach (var documento in documentos)
+                            {
+                                <tr>
+                                    <th scope="row">@documento.Id</th>
+                                    <td>@documento.Descricao</td>
+                                    <td>@documento.Solicitacao.NomeSolicitante</td>
+                                    <td>@documento.Solicitacao.CpfCnpjSolicitante</td>
+                                    <td>@documento.Solicitacao.DataSolicitacao</td>
+                                    <td class="icons">
+                                        <div class="w-100 h-100">
+                                            <a href="@documento.DownloadLink"><i class="las la-file-download fontsize-20" alt="Download"></i></a>
+                                        </div>
+                                        <div class="w-100 h-100">
+                                            <a href="Documento/Excluir/@documento.Id"><i class="las la-trash fontsize-20" alt="Excluir"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 </html>

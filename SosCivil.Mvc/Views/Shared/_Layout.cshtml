@@ -30,13 +30,6 @@
                 <a asp-controller="MeuPerfil" asp-action="Index"><img id="userImage" src="~/Assets/images/logoSosCivilSemFundo.png"/></a>
             </div>
 
-            @if (AppUser.EstaAutenticado())
-            {
-                <div>
-                    <a>Olá @AppUser.ObterUserEmail()</a>
-                </div>
-            }
-
 
         </div>
 

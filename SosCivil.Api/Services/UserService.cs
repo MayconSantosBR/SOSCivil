@@ -11,9 +11,11 @@ namespace SosCivil.Api.Services
     public class UserService : SosCivilServiceBase<User>, IUserService
     {
         private readonly IMapper _mapper;
-        public UserService(IRepository<User> repository, IMapper mapper) : base(repository, mapper)
+        private readonly IRepository<Person> _personRepository;
+        public UserService(IRepository<User> repository, IMapper mapper, IRepository<Person> personRepository) : base(repository, mapper)
         {
             _mapper = mapper;
+            _personRepository = personRepository;
         }
 
         public async Task<Result<User>> CreateAsync(UserDto dto, string email, Person person)
@@ -45,5 +47,18 @@ namespace SosCivil.Api.Services
             }
         }
 
+        public async Task<Result<User>> GetByEmail(string email)
+        {
+            try
+            {
+                var user = await _repository.GetFirstOrDefault(c => c.Email == email);
+                user.Person = await _personRepository.GetByIdAsync(user.PersonId);
+                return Result.Ok(user);
+            }
+            catch (Exception e)
+            {
+                return Result.Fail(e.Message);
+            }
+        }
     }
 }

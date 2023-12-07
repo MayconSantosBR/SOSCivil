@@ -59,6 +59,20 @@ namespace SosCivil.Api.Controllers
             }
         }
 
+        [Route("users/email/{email}")]
+        [HttpGet]
+        public async Task<ActionResult> GetByToken(string email)
+        {
+            try
+            {
+                return ValidateServiceResponse(await _userService.GetByEmail(email));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(Result.Fail(e.Message));
+            }
+        }
+
         [Route("users/{id}")]
         [HttpPut]
         public async Task<ActionResult> Update(long id, [FromBody] UserDto user)

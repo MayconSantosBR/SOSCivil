@@ -21,6 +21,12 @@ namespace SosCivil.Api.Repositories
             return await DbSet.AsNoTracking().Where(predicate).ToListAsync();
         }
 
+        public async Task<TEntity> GetFirstOrDefault(Expression<Func<TEntity, bool>> predicate)
+        {
+            return await DbSet.AsNoTracking().FirstOrDefaultAsync(predicate);
+            
+        }
+
         public virtual async Task<TEntity> GetByIdAsync(long id)
         {
             return await DbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
@@ -59,5 +65,7 @@ namespace SosCivil.Api.Repositories
         {
             Db?.Dispose();
         }
+
+
     }
 }

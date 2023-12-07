@@ -8,5 +8,6 @@ namespace SosCivil.Api.Services.Interfaces
     public interface IUserService : ISosCivilServiceBase<User>
     {
         Task<Result<User>> CreateAsync(UserDto dto, string email, Person person);
+        Task<Result<User>> GetByEmail(string email);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SosCivil.Mvc.Models;
 
 namespace SosCivil.Mvc.Controllers
 {
@@ -6,10 +7,13 @@ namespace SosCivil.Mvc.Controllers
     {
         public IActionResult Index()
         {
+            var documentos = new List<Documento>();
+            ViewData["Documentos"] = documentos;
             return View();
         }
-        public IActionResult Documents()
+        public IActionResult Excluir(long id)
         {
+            
             return View();
         }
        

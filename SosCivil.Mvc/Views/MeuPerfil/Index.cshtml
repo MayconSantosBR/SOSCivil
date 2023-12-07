@@ -1,10 +1,56 @@
-﻿@{
-    ViewData["Title"] = "Meu Perfil";
+﻿@model MeuPerfilViewModel
+
+@{
+    ViewBag.Title = "Meu Perfil";
 }
 
+<style>
+    .button {
+        display: inline-block;
+        padding: 10px 15px;
+        font-size: 16px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #fff;
+        background-color: #fd7e14;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0 5px #999;
+    }
 
-<h1 class="titlePage">MEU PERFIL</h1>
+        .button:hover {
+            background-color: #fd7e14
+        }
 
+        .button:active {
+            text-decoration: none;
+            background-color: #666;
+            box-shadow: 0 1px #666;
+            transform: translateY(4px);
+        }
+</style>
 
+<h1>Meu Perfil</h1>
 
+<div>
+    <label>Nome:</label>
+    <input type="text" value="@Model.Nome" class="readonly-field" readonly />
+</div>
+<div>
+    <label>Email:</label>
+    <input type="text" value="@Model.Email" class="readonly-field" readonly />
+</div>
+<div>
+    <label>Documento:</label>
+    <input type="text" value="@Model.Pessoa.Documento" class="readonly-field" readonly />
+</div>
+<div>
+    <label>Telefone:</label>
+    <input type="text" value="@Model.Pessoa.Telefone" class="readonly-field" readonly />
+</div>
 
+<div class="my-4">
+    <a asp-action="Index" asp-controller="Home" class="button">Voltar</a>
+</div>
