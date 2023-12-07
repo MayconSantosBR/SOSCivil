@@ -4,29 +4,117 @@
     ViewData["Title"] = "Login";
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
-<div class="d-flex w-100 h-100">
-    <div class="w-50 h-100" style="background:red">
 
+<div class="container2">
+    <div class="left-side">
+        
+        <img src="~/Assets/images/fundoautenticacao.jpg" alt="Imagem Lateral">
     </div>
-    <div>
-        <form method="post">
-            <div class="mb-3">
+    <div class="right-side">
+        <form method="post" class="login-form">
+            <h1>Login</h1>
+            <div>
                 <label asp-for="Email" class="form-label">Email</label>
                 <input asp-for="Email" type="email" class="form-control">
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
-            <div class="mb-3">
+
+            <div>
                 <label asp-for="Senha" class="form-label">Senha</label>
                 <input asp-for="Senha" type="password" class="form-control">
                 <span asp-validation-for="Senha" class="text-danger"></span>
             </div>
 
-            <button type="submit" class="btn btn-primary">Entrar</button>
-
+            <button type="submit" class="btn btn-secondary">Entrar</button>
+            <div class="form-footer">
+                <a asp-action="nova-conta" class="form-link">Clique aqui, para criar sua conta!</a>
+            </div>
         </form>
     </div>
-
 </div>
+
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body, html {
+        height: 100%;
+        font-family: Arial, sans-serif;
+    }
+
+    .container2 {
+        display: flex;
+        height: 100%;
+    }
+
+    .left-side {
+        flex: 1;
+        overflow: hidden;
+    }
+
+        .left-side img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Garante que a imagem cubra todo o espaço */
+        }
+
+    .right-side {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f3f3f3;
+    }
+
+    .login-form {
+        width: 70%;
+        max-width: 400px;
+    }
+
+        .login-form h1 {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            background-color: #ff8118;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+    .form-footer {
+        margin-top: 1rem;
+        text-align: center;
+    }
+
+    .form-link {
+        color: #007bff; /* Ou qualquer cor que você desejar */
+        text-decoration: none; /* Remove o sublinhado padrão dos links */
+        transition: color 0.3s; /* Adiciona transição para efeito de hover */
+    }
+
+        .form-link:hover, .form-link:focus {
+            color: #0056b3; /* Cor mais escura no hover para feedback visual */
+            text-decoration: underline; /* Ou outro efeito desejado no hover */
+        }
+
+</style>
 
 
 @section Scripts{

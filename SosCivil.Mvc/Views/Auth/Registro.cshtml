@@ -1,76 +1,171 @@
 ﻿@using SosCivil.Mvc.Models.Auth;
 @model UsuarioRegistroViewModel
 @{
-    ViewData["Title"] = "Registro";
+    ViewData["Title"] = "Nova conta";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
-<div class="row">
-    <div class="col-md-12">
-        <section>
-            <form method="post">
-                <div class="mb-3">
+
+<div class="container2">
+    <div class="left-side">
+        <form asp-controller="Auth" asp-action="Registro" method="post" class="login-form">
+            <h1>Nova conta</h1>
+            <div class="form-row">
+                <div class="form-column">
                     <label asp-for="Nome" class="form-label">Nome</label>
                     <input asp-for="Nome" type="text" class="form-control">
                     <span asp-validation-for="Nome" class="text-danger"></span>
                 </div>
-                <div class="mb-3">
+                <div class="form-column">
                     <label asp-for="Email" class="form-label">Email</label>
                     <input asp-for="Email" type="email" class="form-control">
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
-                <div class="mb-3">
+            </div>
+
+            <div class="form-row">
+                <div class="form-column">
                     <label asp-for="Senha" class="form-label">Senha</label>
                     <input asp-for="Senha" type="password" class="form-control">
                     <span asp-validation-for="Senha" class="text-danger"></span>
                 </div>
-
-                <div class="mb-3">
+                <div class="form-column">
                     <label asp-for="SenhaConfirmacao" class="form-label">Confirme sua Senha</label>
                     <input asp-for="SenhaConfirmacao" type="password" class="form-control">
                     <span asp-validation-for="SenhaConfirmacao" class="text-danger"></span>
                 </div>
+            </div>
 
-                <div class="mb-3">
+            <div class="form-row">
+                <div class="form-column">
                     <label asp-for="Cellphone" class="form-label">Telefone</label>
                     <input asp-for="Cellphone" type="text" class="form-control">
                     <span asp-validation-for="Cellphone" class="text-danger"></span>
                 </div>
-
-                <div class="mb-3">
+                <div class="form-column">
                     <label asp-for="CpfCnpj" class="form-label">CPF</label>
                     <input asp-for="CpfCnpj" type="text" class="form-control">
                     <span asp-validation-for="CpfCnpj" class="text-danger"></span>
                 </div>
+            </div>
 
-                <div class="form-check">
-                    <input class="form-check-input" asp-for="PersonType" type="radio" name="exampleRadios" id="personType1" value="1">
-                    <label class="form-check-label" for="personType1">
-                        Pessoa Física
-                    </label>
-                </div>
+            <button type="submit" class="btn btn-secondary">Enviar</button>
 
-                <div class="form-check">
-                    <input class="form-check-input" asp-for="PersonType" type="radio" name="exampleRadios" id="personType2" value="2">
-                    <label class="form-check-label" for="personType2">
-                        Pessoa Juridica
-                    </label>
-                </div>
-
-                <div class="form-check">
-                    <input class="form-check-input" asp-for="PersonType" type="radio" name="exampleRadios" id="personType3" value="3">
-                    <label class="form-check-label" for="personType3">
-                        Usuário Padrão
-                    </label>
-                </div>
-
-
-                <button type="submit" class="btn btn-primary">Enviar</button>
-            </form>
-        </section>
-
+            <div class="form-footer">
+                @* <a asp-action="Login" class="form-link">Clique aqui, caso já tenha uma conta!</a> *@
+            </div>
+        </form>
     </div>
 
+    <!-- Imagem agora à direita -->
+    <div class="right-side">
+        <img src="~/Assets/images/fundoautenticacao.jpg" alt="Imagem Lateral">
+    </div>
 </div>
 
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
 }
+
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body, html {
+        height: 100%;
+        font-family: Arial, sans-serif;
+    }
+
+    .container2 {
+        display: flex;
+        height: 100%;
+    }
+
+    .right-side {
+        flex: 1;
+        overflow: hidden;
+    }
+
+        .right-side img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Garante que a imagem cubra todo o espaço */
+        }
+
+    .left-side {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f3f3f3;
+    }
+
+    .login-form {
+        width: 100%;
+        max-width: 60%;
+    }
+
+        .login-form h1 {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .login-form input {
+            width: 100%; /* Mantenha a largura em 100% para preencher o espaço da coluna */
+            padding: 0.5rem; /* Reduza o padding para tornar os inputs mais finos */
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .login-form button {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            background-color: #ff8118;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+    .form-row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+    }
+
+    .form-column {
+        flex: 0 0 48%; /* Define cada coluna para ocupar quase metade da largura */
+    }
+
+
+
+    /* Ajuste o flex-basis para as colunas para permitir que os inputs sejam mais largos */
+    .form-column {
+        flex: 0 0 49%; /* Ajuste a largura das colunas */
+        margin-right: 2%; /* Adicione margem entre as colunas se necessário */
+    }
+
+    .form-row .form-column:last-child {
+        margin-right: 0;
+    }
+
+    .form-footer {
+        margin-top: 1rem;
+        text-align: center;
+    }
+
+    .form-link {
+        color: #007bff; /* Ou qualquer cor que você desejar */
+        text-decoration: none; /* Remove o sublinhado padrão dos links */
+        transition: color 0.3s; /* Adiciona transição para efeito de hover */
+    }
+
+        .form-link:hover, .form-link:focus {
+            color: #0056b3; /* Cor mais escura no hover para feedback visual */
+            text-decoration: underline; /* Ou outro efeito desejado no hover */
+        }
+</style>

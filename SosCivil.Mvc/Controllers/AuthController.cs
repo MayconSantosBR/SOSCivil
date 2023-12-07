@@ -24,14 +24,14 @@ namespace SosCivil.Mvc.Controllers
 
 
         [HttpGet]
-        [Route("nova-conta")]
+        [Route("auth/nova-conta")]
         public IActionResult Registro()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("nova-conta")]
+        [Route("auth/nova-conta")]
         public async Task<IActionResult> Registro(UsuarioRegistroViewModel usuarioRegistro)
         {
             try
