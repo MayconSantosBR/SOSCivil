@@ -8,6 +8,11 @@
         <section>
             <form method="post">
                 <div class="mb-3">
+                    <label asp-for="Nome" class="form-label">Nome</label>
+                    <input asp-for="Nome" type="text" class="form-control">
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
                     <label asp-for="Email" class="form-label">Email</label>
                     <input asp-for="Email" type="email" class="form-control">
                     <span asp-validation-for="Email" class="text-danger"></span>
@@ -23,6 +28,41 @@
                     <input asp-for="SenhaConfirmacao" type="password" class="form-control">
                     <span asp-validation-for="SenhaConfirmacao" class="text-danger"></span>
                 </div>
+
+                <div class="mb-3">
+                    <label asp-for="Cellphone" class="form-label">Telefone</label>
+                    <input asp-for="Cellphone" type="text" class="form-control">
+                    <span asp-validation-for="Cellphone" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="CpfCnpj" class="form-label">CPF</label>
+                    <input asp-for="CpfCnpj" type="text" class="form-control">
+                    <span asp-validation-for="CpfCnpj" class="text-danger"></span>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" asp-for="PersonType" type="radio" name="exampleRadios" id="personType1" value="1">
+                    <label class="form-check-label" for="personType1">
+                        Pessoa Física
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" asp-for="PersonType" type="radio" name="exampleRadios" id="personType2" value="2">
+                    <label class="form-check-label" for="personType2">
+                        Pessoa Juridica
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input" asp-for="PersonType" type="radio" name="exampleRadios" id="personType3" value="3">
+                    <label class="form-check-label" for="personType3">
+                        Usuário Padrão
+                    </label>
+                </div>
+
+
                 <button type="submit" class="btn btn-primary">Enviar</button>
             </form>
         </section>

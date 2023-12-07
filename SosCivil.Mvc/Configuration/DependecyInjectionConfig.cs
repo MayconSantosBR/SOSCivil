@@ -10,6 +10,7 @@ namespace SosCivil.Mvc.Configuration
             services.AddHttpClient<IAuthService, AuthService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped<IUser, AspNetUser>();
+            services.AddScoped<IPersonService, PersonService>();
         }
     }
 }

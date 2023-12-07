@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using SosCivil.Mvc.Models;
 using SosCivil.Mvc.Models.Auth;
+using SosCivil.Mvc.Models.Enums;
 using SosCivil.Mvc.Service;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -11,10 +13,13 @@ namespace SosCivil.Mvc.Controllers
     public class AuthController : MainController
     {
         private readonly IAuthService _authService;
+        private readonly IPersonService _personService;
 
-        public AuthController(IAuthService authService)
+
+        public AuthController(IAuthService authService, IPersonService personService)
         {
             _authService = authService;
+            _personService = personService;
         }
 
 
@@ -39,6 +44,15 @@ namespace SosCivil.Mvc.Controllers
 
                 if (ResponsePossuiErros(res.ResponseResult))
                     return View(usuarioRegistro);
+                var person = new PersonModel
+                {
+                    Name = usuarioRegistro.Nome,
+                    CpfCnpj = usuarioRegistro.CpfCnpj,
+                    Cellphone = usuarioRegistro.Cellphone,
+                    PersonType = TipoPessoaEnum.Fisica
+                };
+
+                var resPerson = await _personService.CreatePerson(person, res.AccessToken, usuarioRegistro.Email);
 
                 await RealizarLogin(res);
 
@@ -79,7 +93,7 @@ namespace SosCivil.Mvc.Controllers
 
                 return RedirectToAction("Index", "Home");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return View(usuarioLogin);
             }
