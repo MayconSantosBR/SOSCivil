@@ -13,6 +13,10 @@ namespace SosCivil.Api.Data.EntitiesConfigurations
             builder.Property(x => x.Status)
                 .IsRequired();
 
+            builder.HasMany(r => r.RequestItem)
+                .WithOne(ri => ri.Occurrence)
+                .HasForeignKey(ri => ri.OccurrenceId);
+
             builder.ToTable("Occurences");
 
         }

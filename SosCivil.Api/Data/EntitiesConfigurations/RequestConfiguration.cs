@@ -19,10 +19,6 @@ namespace SosCivil.Api.Data.EntitiesConfigurations
             builder.Property(r => r.DeliveryDate)
                 .IsRequired(false);
 
-            builder.HasMany(r => r.RequestItems)
-                .WithOne(ri => ri.Request)
-                .HasForeignKey(ri => ri.RequestId);
-
             builder.ToTable("Requests");
 
 

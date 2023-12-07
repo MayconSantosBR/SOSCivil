@@ -10,6 +10,5 @@ namespace SosCivil.Api.Data.Entities
         public StatusEnum Status { get; set; }
         public DateTime RequestDate { get; set; }
         public DateTime? DeliveryDate { get; set; }
-        public ICollection<RequestItem> RequestItems { get; set; }
     }
 }
