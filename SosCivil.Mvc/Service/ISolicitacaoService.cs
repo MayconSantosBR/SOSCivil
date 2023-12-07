@@ -6,5 +6,6 @@ namespace SosCivil.Mvc.Service
     public interface ISolicitacaoService
     {
         Task<List<Solicitacao>> GetAllSolicitacoes();
+        Task<Solicitacao> Create(Solicitacao solicitacao);
     }
 }

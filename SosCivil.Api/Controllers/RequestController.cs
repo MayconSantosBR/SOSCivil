@@ -11,10 +11,12 @@ namespace SosCivil.Api.Controllers
     public class RequestController : SosCivilControllerBase
     {
         private readonly IRequestService _requestService;
+        private readonly IOccurrenceService _ocurrenceService;
 
-        public RequestController(IRequestService requestService)
+        public RequestController(IRequestService requestService, IOccurrenceService ocurrenceService)
         {
             _requestService = requestService;
+            _ocurrenceService = ocurrenceService;
         }
 
         [Route("requests")]
@@ -37,6 +39,9 @@ namespace SosCivil.Api.Controllers
         {
             try
             {
+                var occurrenceId = await _ocurrenceService.GetAllAsync();
+                var id = occurrenceId.Value.LastOrDefault().Id;
+                requestDto.OccurrenceId = id;
                 return ValidateServiceResponse(await _requestService.MapAndCreateAsync(requestDto));
             }
             catch (Exception e)

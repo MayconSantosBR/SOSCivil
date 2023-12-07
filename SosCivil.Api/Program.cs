@@ -46,6 +46,7 @@ builder.Services.AddScoped<IOccurrenceService, OccurrenceService>();
 builder.Services.AddScoped<IPersonService, PersonService>();
 builder.Services.AddScoped<IEstablishmentService, EstablishmentService>();
 builder.Services.AddScoped<IS2idRequester, S2idRequester>();
+builder.Services.AddScoped<IRequestService, RequestService>();
 
 builder.Services.AddHttpClient<IS2idRequester, S2idRequester>()
     .ConfigurePrimaryHttpMessageHandler(() =>

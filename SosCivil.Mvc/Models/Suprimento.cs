@@ -24,5 +24,7 @@ namespace SosCivil.Mvc.Models
 
         [JsonProperty("totalQuantityWithUnity")]
         public decimal QuantidadeTotal { get; set; }
+
     }
+
 }

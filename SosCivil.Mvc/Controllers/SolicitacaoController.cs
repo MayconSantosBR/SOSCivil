@@ -2,15 +2,18 @@
 using SosCivil.Api.Data.Enums;
 using SosCivil.Mvc.Models;
 using SosCivil.Mvc.Service;
+using SosCivil.Mvc.Service.Interfaces;
 
 namespace SosCivil.Mvc.Controllers
 {
     public class SolicitacaoController : Controller
     {
         private readonly ISolicitacaoService _solicitacaoService;
-        public SolicitacaoController(ISolicitacaoService solicitacaoService)
+        private readonly IItemService _itemService;
+        public SolicitacaoController(ISolicitacaoService solicitacaoService, IItemService itemService)
         {
             _solicitacaoService = solicitacaoService;
+            _itemService = itemService;
         }
         public async Task<IActionResult> Index()
         {
@@ -19,34 +22,19 @@ namespace SosCivil.Mvc.Controllers
             return View();
         }
 
-        public IActionResult Novo()
+        public async Task<IActionResult> Novo()
         {
             var model = new Solicitacao();
-            ViewData["Suprimentos"] = new List<Suprimento>
-            {
-                new Suprimento
-                {
-                    Id = 1,
-                    Nome = "Água"
-                },
-                new Suprimento
-                {
-                    Id = 2,
-                    Nome = "Alimento"
-                },
-                new Suprimento
-                {
-                    Id = 3,
-                    Nome = "Remédio"
-                }
-            };
+            ViewData["Suprimentos"] = await _itemService.PegarSuprimentosAssincrono();
+
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Novo(Solicitacao model)
+        public async Task<IActionResult> Novo(Solicitacao model)
         {
-            return View(model);
+            var res = await _solicitacaoService.Create(model);
+            return View("Index");
         }
 
         public IActionResult Editar(long id)

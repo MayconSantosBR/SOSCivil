@@ -35,26 +35,30 @@
                         {
                             foreach (var solicitacao in solicitacoes)
                             {
-                                <tr>
-                                    <th scope="row">@solicitacao.Id</th>
-                                    <td>@solicitacao.NomeSolicitante</td>
-                                    <td>@solicitacao.CpfCnpjSolicitante</td>
-                                    <td>@solicitacao.Celular</td>
-                                    <td>@solicitacao.Rua</td>
-                                    <td>@solicitacao.Bairro</td>
-                                    <td>@solicitacao.Cep</td>
-                                    <td>@solicitacao.Status.GetDescription()</td>
-                                    <td>@solicitacao.DataSolicitacao</td>
-                                    <td>@solicitacao.Suprimento.Nome</td>
-                                    <td class="icons">
-                                        <div class="w-100 h-100">
-                                            <a href="Solicitacao/Editar/@solicitacao.Id"><i class="las la-pen fontsize-20" alt="Editar"></i></a>
-                                        </div>
-                                        <div class="w-100 h-100">
-                                            <a href="Solicitacao/Excluir/@solicitacao.Id"><i class="las la-trash fontsize-20" alt="Excluir"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
+                                if(solicitacao.Id != 0)
+                                {
+                                    <tr>
+                                        <th scope="row">@solicitacao.Id</th>
+                                        <td>@solicitacao.NomeSolicitante</td>
+                                        <td>@solicitacao.CpfCnpjSolicitante</td>
+                                        <td>@solicitacao.Celular</td>
+                                        <td>@solicitacao.Rua</td>
+                                        <td>@solicitacao.Bairro</td>
+                                        <td>@solicitacao.Cep</td>
+                                        <td>@solicitacao.Status.GetDescription()</td>
+                                        <td>@solicitacao.DataSolicitacao</td>
+                                        <td>@solicitacao.Suprimento.Nome</td>
+                                        <td class="icons">
+                                            <div class="w-100 h-100">
+                                                <a href="Solicitacao/Editar/@solicitacao.Id"><i class="las la-pen fontsize-20" alt="Editar"></i></a>
+                                            </div>
+                                            <div class="w-100 h-100">
+                                                <a href="Solicitacao/Excluir/@solicitacao.Id"><i class="las la-trash fontsize-20" alt="Excluir"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+ 
                             }
                         }
                     }

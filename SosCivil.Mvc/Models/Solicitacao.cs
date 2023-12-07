@@ -1,10 +1,12 @@
 ﻿using SosCivil.Api.Data.Enums;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace SosCivil.Mvc.Models
 {
     public class Solicitacao
     {
+        [JsonPropertyName("id")]
         public int Id { get; set; }
         public string NomeSolicitante { get; set; }
         [MinLength(11), MaxLength(14)]

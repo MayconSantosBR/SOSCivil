@@ -30,7 +30,7 @@ namespace SosCivil.Api.Services
             entity = await _repository.CreateAsync(entity);
 
 
-            if ((dto as OccurrenceDto).Documents != null || (dto as OccurrenceDto).Documents.Count > 0)
+            if ((dto as OccurrenceDto).Documents != null && (dto as OccurrenceDto).Documents.Count > 0)
             {
                 var mongoEntity = new OccurrenceRegister
                 {
@@ -41,7 +41,7 @@ namespace SosCivil.Api.Services
                 await _mongoService.CreateAsync(_collectionName, mongoEntity);
             }
 
-            return Result.Ok();
+            return Result.Ok(entity);
         }
 
         public async override Task<Result<Occurrence>> MapAndUpdateAsync<M>(long id, M dto)

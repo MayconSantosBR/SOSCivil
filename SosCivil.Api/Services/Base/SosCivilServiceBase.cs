@@ -33,9 +33,8 @@ namespace SosCivil.Api.Services.Base
         public virtual async Task<Result<T>> CreateAsync(T entity)
         {
             try
-            {
-                await _repository.CreateAsync(entity);
-                return Result.Ok();
+            {           
+                return Result.Ok(await _repository.CreateAsync(entity));
             }
             catch (Exception e)
             {

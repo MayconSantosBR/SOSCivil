@@ -13,10 +13,12 @@ namespace SosCivil.Api.Controllers
     public class EstablishmentController : SosCivilControllerBase
     {
         private readonly IEstablishmentService _establishmentService;
+        private readonly IPersonService _personService;
 
-        public EstablishmentController(IEstablishmentService establishmentService)
+        public EstablishmentController(IEstablishmentService establishmentService, IPersonService personService)
         {
             _establishmentService = establishmentService;
+            _personService = personService;
         }
 
         [Route("establishments")]
@@ -39,6 +41,9 @@ namespace SosCivil.Api.Controllers
         {
             try
             {
+                var persons = await _personService.GetAllAsync();
+                var person = persons.Value.FirstOrDefault();
+                establishment.PersonId = person.Id;
                 return ValidateServiceResponse(await _establishmentService.MapAndCreateAsync(establishment));
             }
             catch (Exception e)
