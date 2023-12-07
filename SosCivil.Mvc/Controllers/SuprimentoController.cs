@@ -8,5 +8,9 @@ namespace SosCivil.Mvc.Controllers
         {
             return View();
         }
+        public IActionResult RegistrationSupriments()
+        {
+            return View();
+        }
     }
 }

@@ -9,8 +9,9 @@
     <h1 class="titlePage">
         SOLICITAÇÕES
     </h1>
-    <a type="button" asp-action="Novo" asp-controller="Solicitacao" class="btn btn-dark float-right">Nova Solicitação</a>
     <div class="card">
+        <a type="button" onclick="voltarPagina()" class="btn btn-dark float-right returnButton"><i class="las la-arrow-left fontsize-20" alt="Voltar"></i></a>
+        <a type="button" asp-action="Novo" asp-controller="Solicitacao" class="btn btn-dark float-right addButton"><i class="las la-plus fontsize-20" alt="Nova Solicitação"></i></a>
         <div class="table-responsive table-wrapper-scroll-y">
             <table class="table table-striped mb-0">
                 <thead>
@@ -18,6 +19,10 @@
                         <th scope="col">#</th>
                         <th scope="col">Nome Solicitante</th>
                         <th scope="col">CPF/CNPJ Solicitante</th>
+                        <th scope="col">Celular</th>
+                        <th scope="col">Rua</th>
+                        <th scope="col">Bairro</th>
+                        <th scope="col">CEP</th>
                         <th scope="col">Status</th>
                         <th scope="col">Data da Solicitação</th>
                         <th scope="col">Suprimento</th>
@@ -32,12 +37,20 @@
                                 <th scope="row">@solicitacao.Id</th>
                                 <td>@solicitacao.NomeSolicitante</td>
                                 <td>@solicitacao.CpfCnpjSolicitante</td>
+                                <td>@solicitacao.Celular</td>
+                                <td>@solicitacao.Rua</td>
+                                <td>@solicitacao.Bairro</td>
+                                <td>@solicitacao.Cep</td>
                                 <td>@solicitacao.Status.GetDescription()</td>
                                 <td>@solicitacao.DataSolicitacao</td>
                                 <td>@solicitacao.Suprimento.NomeItem</td>
                                 <td class="icons">
-                                    <a href="Solicitacao/Editar/@solicitacao.Id"><i class="las la-pen fontsize-20" alt="Editar"></i></a>
-                                    <a href="Solicitacao/Excluir/@solicitacao.Id"><i class="las la-trash fontsize-20" alt="Excluir"></i></a>
+                                    <div class="w-100 h-100">
+                                        <a href="Solicitacao/Editar/@solicitacao.Id"><i class="las la-pen fontsize-20" alt="Editar"></i></a>
+                                    </div>
+                                    <div class="w-100 h-100">
+                                        <a href="Solicitacao/Excluir/@solicitacao.Id"><i class="las la-trash fontsize-20" alt="Excluir"></i></a>
+                                    </div>
                                 </td>
                             </tr>
                         }

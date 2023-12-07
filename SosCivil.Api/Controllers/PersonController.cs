@@ -4,6 +4,7 @@ using SosCivil.Api.Controllers.Base;
 using SosCivil.Api.Data.Entities;
 using SosCivil.Api.Models.Dtos.Controllers;
 using SosCivil.Api.Repositories.Interfaces;
+using SosCivil.Api.Services;
 using SosCivil.Api.Services.Interfaces;
 using ZstdSharp.Unsafe;
 
@@ -14,10 +15,12 @@ namespace SosCivil.Api.Controllers
     public class PersonController : SosCivilControllerBase
     {
         private readonly IPersonService _personService;
+        private readonly IUserService _userService;
 
-        public PersonController(IPersonService personService)
+        public PersonController(IPersonService personService, IUserService userService)
         {
             _personService = personService;
+            _userService = userService;
         }
 
 
@@ -37,11 +40,18 @@ namespace SosCivil.Api.Controllers
 
         [Route("persons")]
         [HttpPost]
-        public async Task<ActionResult> Create([FromBody] PersonDto person)
+        public async Task<ActionResult> Create([FromBody] PersonDto person, [FromQuery]string token, [FromQuery] string email)
         {
             try
             {
-                return ValidateServiceResponse(await _personService.MapAndCreateAsync(person));
+                var personEntity = await _personService.MapAndCreateAsync(person);
+                var userDto = new UserDto
+                {
+                    Username = person.Name,
+                    Password = token
+                };
+                var userResponse = ValidateServiceResponse(await _userService.CreateAsync(userDto, email, personEntity.Value));
+                return userResponse;
             }
             catch (Exception e)
             {

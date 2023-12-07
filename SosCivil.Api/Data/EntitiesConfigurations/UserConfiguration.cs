@@ -16,8 +16,7 @@ namespace SosCivil.Api.Data.EntitiesConfigurations
             builder.Property(x => x.Email).IsRequired()
                 .HasMaxLength(100);
 
-            builder.Property(x => x.Password).IsRequired()
-                .HasMaxLength(100);
+            builder.Property(x => x.Password).HasColumnType("text").IsRequired();
 
             builder.HasOne(x => x.Person)
                 .WithMany()

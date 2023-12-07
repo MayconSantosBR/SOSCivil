@@ -1,6 +1,10 @@
 ﻿@using SosCivil.Api.Data.Enums
+@using SosCivil.Core.Data.Enums;
+@using SosCivil.Core.Extensions;
 @model SosCivil.Mvc.Models.Solicitacao
-
+@{
+    var suprimetos = (List<Suprimento>?)ViewData["Suprimentos"];
+}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,30 +13,96 @@
         SOLICITAÇÕES
     </h1>
     <div class="card p-4">
+        <a type="button" onclick="voltarPagina()" class="btn btn-dark float-right returnButton"><i class="las la-arrow-left fontsize-20" alt="Voltar"></i></a>
         <form asp-action="Novo">
+            <input type="hidden" asp-for="Id">
             <div class="row">
-                <input type="hidden" asp-for="Id">
-                <div class="col-md-4">
-                    <div class="styled-input">
+                <div class="col-md-6 col-sm-12">
+                    <div class="styled-input wide">
                         <input type="text" id="nomeSolicitante" asp-for="NomeSolicitante" required>
-                        <label for="nomeSolicitante">Nome Solicitante</label>
-                    </div> 
+                        <label>Nome Solicitante</label>
+                    </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="styled-input">
-                    
-                    <select id="status" asp-for="Status" required>
-                        <option value=""></option>
-                        @foreach (var status in Enum.GetValues(typeof(StatusEnum)).Cast<StatusEnum>())
-                        {
-                            <option value="@status">@status</option>
-                        }
-                    </select>
-                        <label for="status" class="col-form-label">Status</label>
+                <div class="col-md-6 col-sm-12">
+                    <div class="styled-input wide">
+                        <input type="text" id="cpfCnpjSolicitante" asp-for="CpfCnpjSolicitante" required>
+                        <label>CPF/CNPJ Solicitante</label>
                     </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-dark">Salvar</button>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="styled-input wide">
+                        <input type="text" id="celular" asp-for="Celular" required>
+                        <label>Celular</label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="styled-input wide">
+                        <input type="text" id="cep" asp-for="Cep" required>
+                        <label>CEP</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="styled-input wide">
+                        <input type="text" id="bairro" asp-for="Bairro" required>
+                        <label>Bairro</label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="styled-input wide">
+                        <input type="text" id="rua" asp-for="Rua" required>
+                        <label>Rua</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="styled-input wide">
+                        <select id="status" asp-for="Status" required>
+                            <option value="" selected></option>
+                            @{
+                                if (Model.Status != null)
+                                {
+                                    <option selected value="@Model.Status">@Model.Status.GetDescription()</option>
+                                }
+                                else
+                                {
+                                    foreach (var status in Enum.GetValues(typeof(StatusEnum)).Cast<StatusEnum>())
+                                    {
+                                        <option value="@status">@status.GetDescription()</option>
+                                    }
+                                }
+                            }
+                        </select>
+                        <label for="status">Status</label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="styled-input wide">
+                        <select id="suprimento" asp-for="Suprimento" required>
+                            <option value="" selected></option>
+                            @{
+                                if (Model.Suprimento != null)
+                                {
+                                    <option selected value="@Model.Suprimento.Id">@Model.Suprimento.NomeItem</option>
+                                }
+                                else
+                                {
+                                    foreach (var suprimento in suprimetos)
+                                    {
+                                        <option value="@suprimento.Id">@suprimento.NomeItem</option>
+                                    }
+                                }
+                            }
+                        </select>
+                        <label for="suprimento">Suprimento</label>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-dark defaultButton">Salvar</button>
         </form>
     </div>
 </body>
