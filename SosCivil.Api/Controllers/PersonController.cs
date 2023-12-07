@@ -43,13 +43,13 @@ namespace SosCivil.Api.Controllers
         {
             try
             {
-                var personEntity = await _personService.MapAndCreateAsync(person);
+                var personEntity = await _personService.CreateAndReturn(person);
                 var userDto = new UserDto
                 {
                     Username = person.Name,
                     Password = token
                 };
-                var userResponse = ValidateServiceResponse(await _userService.CreateAsync(userDto, email, personEntity.Value));
+                var userResponse = ValidateServiceResponse(await _userService.CreateAsync(userDto, email, personEntity));
                 return userResponse;
             }
             catch (Exception e)

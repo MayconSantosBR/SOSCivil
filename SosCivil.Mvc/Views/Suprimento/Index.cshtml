@@ -1,5 +1,7 @@
-﻿@{
+﻿@using SosCivil.Core.Extensions;
+@{
     ViewData["Title"] = "Suprimentos";
+    var suprimentos = (List<Suprimento>?)ViewData["Suprimentos"];
 }
 
 <!DOCTYPE html>
@@ -8,40 +10,50 @@
     <h1 class="titlePage">
         SUPRIMENTOS
     </h1>
-    <a href="@Url.Action("RegistrationSupriments")" style="background-color: orange; color: black; border: none;" class="btn btn-primary">Cadastrar Documento</a>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Codigo</th>
-                <th scope="col">Item</th>
-                <th scope="col">Estoque</th>
-                <th scope="col">Unidade Medida</th>
-                <th scope="col">R$/Kg</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Lona Padrão</td>
-                <td>60</td>
-                <td>kg</td>
-                <td>R$ 15,00</td>
-            </tr>
-            <tr>
-                <th scope="row">2</th>
-                <td>Telha 6 mm</td>
-                <td>120</td>
-                <td>Un</td>
-                <td>R$ 25,00</td>
-            </tr>
-            <tr>
-                <th scope="row">3</th>
-                <td>Lona Grossa</td>
-                <td>35</td>
-                <td>m²</td>
-                <td>R$ 25,00</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="card">
+        <a type="button" onclick="voltarPagina()" class="btn btn-dark float-right returnButton"><i class="las la-arrow-left fontsize-20" alt="Voltar"></i></a>
+        <a type="button" asp-action="Novo" asp-controller="Suprimento" class="btn btn-dark float-right addButton"><i class="las la-plus fontsize-20" alt="Novo Suprimento"></i></a>
+        <div class="table-responsive table-wrapper-scroll-y">
+            <table class="table table-striped mb-0">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Descrição</th>
+                        <th scope="col">Unidade De Medida</th>
+                        <th scope="col">Quantidade Única</th>
+                        <th scope="col">Quantidade Total</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if (suprimentos != null && suprimentos.Any())
+                        {
+                            foreach (var suprimento in suprimentos)
+                            {
+                                <tr>
+                                    <th scope="row">@suprimento.Id</th>
+                                    <td>@suprimento.Nome</td>
+                                    <td>@suprimento.Descricao</td>
+                                    <td>@suprimento.UnidadeDeMedida.GetDescription()</td>
+                                    <td>@suprimento.Quantidade</td>
+                                    <td>@suprimento.QuantidadeTotal</td>
+                                    <td class="icons">
+                                        <div class="w-100 h-100">
+                                            <a href="Suprimento/Editar/@suprimento.Id"><i class="las la-pen fontsize-20" alt="Editar"></i></a>
+                                        </div>
+                                        <div class="w-100 h-100">
+                                            <a href="Suprimento/Excluir/@suprimento.Id"><i class="las la-trash fontsize-20" alt="Excluir"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
 </html>

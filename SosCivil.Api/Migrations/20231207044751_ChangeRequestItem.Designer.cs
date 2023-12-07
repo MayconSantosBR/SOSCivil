@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using SosCivil.Api.Data.Contexts;
@@ -11,9 +12,10 @@ using SosCivil.Api.Data.Contexts;
 namespace SosCivil.Api.Migrations
 {
     [DbContext(typeof(MainContext))]
-    partial class MainContextModelSnapshot : ModelSnapshot
+    [Migration("20231207044751_ChangeRequestItem")]
+    partial class ChangeRequestItem
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -140,8 +142,6 @@ namespace SosCivil.Api.Migrations
 
                     b.HasIndex("PersonId");
 
-                    b.HasIndex("RequestItemId");
-
                     b.HasIndex("UserId");
 
                     b.ToTable("Occurences", (string)null);
@@ -215,12 +215,17 @@ namespace SosCivil.Api.Migrations
                     b.Property<long>("ItemId")
                         .HasColumnType("bigint");
 
+                    b.Property<long>("OccurrenceId")
+                        .HasColumnType("bigint");
+
                     b.Property<int>("Quantity")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ItemId");
+
+                    b.HasIndex("OccurrenceId");
 
                     b.ToTable("RequestItems", (string)null);
                 });
@@ -279,11 +284,6 @@ namespace SosCivil.Api.Migrations
                         .HasForeignKey("PersonId")
                         .IsRequired();
 
-                    b.HasOne("SosCivil.Api.Data.Entities.RequestItem", "RequestItem")
-                        .WithMany()
-                        .HasForeignKey("RequestItemId")
-                        .IsRequired();
-
                     b.HasOne("SosCivil.Api.Data.Entities.User", "User")
                         .WithMany("Occurrences")
                         .HasForeignKey("UserId")
@@ -292,8 +292,6 @@ namespace SosCivil.Api.Migrations
                     b.Navigation("Establishment");
 
                     b.Navigation("Person");
-
-                    b.Navigation("RequestItem");
 
                     b.Navigation("User");
                 });
@@ -315,7 +313,14 @@ namespace SosCivil.Api.Migrations
                         .HasForeignKey("ItemId")
                         .IsRequired();
 
+                    b.HasOne("SosCivil.Api.Data.Entities.Occurrence", "Occurrence")
+                        .WithMany("RequestItem")
+                        .HasForeignKey("OccurrenceId")
+                        .IsRequired();
+
                     b.Navigation("Item");
+
+                    b.Navigation("Occurrence");
                 });
 
             modelBuilder.Entity("SosCivil.Api.Data.Entities.User", b =>
@@ -336,6 +341,11 @@ namespace SosCivil.Api.Migrations
             modelBuilder.Entity("SosCivil.Api.Data.Entities.Item", b =>
                 {
                     b.Navigation("RequestItems");
+                });
+
+            modelBuilder.Entity("SosCivil.Api.Data.Entities.Occurrence", b =>
+                {
+                    b.Navigation("RequestItem");
                 });
 
             modelBuilder.Entity("SosCivil.Api.Data.Entities.Person", b =>

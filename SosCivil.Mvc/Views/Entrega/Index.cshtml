@@ -1,37 +1,54 @@
-﻿@{
+﻿@using SosCivil.Core.Extensions;
+@{
     ViewData["Title"] = "Entregas";
+    var entregas = (List<Entrega>?)ViewData["Entregas"];
 }
-
-<h1 class="titlePage">
-    ENTREGAS
-</h1>
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Desastre</th>
-            <th scope="col">Nivel</th>
-            <th scope="col">Impacto</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td>Tornado</td>
-            <td>5</td>
-            <td>35 km</td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Desmoronamento</td>
-            <td>3</td>
-            <td>1 km</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td>Terremoto</td>
-            <td>2</td>
-            <td>10 km</td>
-        </tr>
-    </tbody>
-</table>
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <h1 class="titlePage">
+        ENTREGAS
+    </h1>
+    <div class="card">
+        <a type="button" onclick="voltarPagina()" class="btn btn-dark float-right returnButton"><i class="las la-arrow-left fontsize-20" alt="Voltar"></i></a>
+        <a type="button" asp-action="Novo" asp-controller="Entrega" class="btn btn-dark float-right addButton"><i class="las la-plus fontsize-20" alt="Nova Entrega"></i></a>
+        <div class="table-responsive table-wrapper-scroll-y">
+            <table class="table table-striped mb-0">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Id da Solicitação</th>
+                        <th scope="col">Status Entrega</th>
+                        <th scope="col">Data de Entrega</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        if (entregas != null && entregas.Any())
+                        {
+                            foreach (var entrega in entregas)
+                            {
+                                <tr>
+                                    <th scope="row">@entrega.Id</th>
+                                    <td><a href="Solicitacao/Editar/@entrega.Solicitacao.Id">@entrega.Solicitacao.Id - @entrega.Solicitacao.NomeSolicitante</a></td>
+                                    <td>@entrega.Status.GetDescription()</td>
+                                    <td>@entrega.DataEntrega</td>
+                                    <td class="icons">
+                                        <div class="w-100 h-100">
+                                            <a href="Entrega/Editar/@entrega.Id"><i class="las la-pen fontsize-20" alt="Editar"></i></a>
+                                        </div>
+                                        <div class="w-100 h-100">
+                                            <a href="Entrega/Excluir/@entrega.Id"><i class="las la-trash fontsize-20" alt="Excluir"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

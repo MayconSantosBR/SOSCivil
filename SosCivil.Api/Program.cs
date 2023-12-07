@@ -35,6 +35,8 @@ builder.Services.AddScoped<IMongoClient>(c => {
     return new MongoClient(appConfig.GetSetting("ConnectionStrings:Mongo")); 
 });
 
+builder.Services.AddScoped<IMongoService, MongoService>();
+
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<ICobradeService, CobradeService>();
 builder.Services.AddScoped<IUserService, UserService>();

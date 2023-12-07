@@ -1,0 +1,70 @@
+﻿@using SosCivil.Api.Data.Enums
+@using SosCivil.Core.Data.Enums;
+@using SosCivil.Core.Extensions;
+@model SosCivil.Mvc.Models.Suprimento
+
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <h1 class="titlePage">
+        SUPRIMENTOS
+    </h1>
+    <div class="card p-4">
+        <a type="button" onclick="voltarPagina()" class="btn btn-dark float-right returnButton"><i class="las la-arrow-left fontsize-20" alt="Voltar"></i></a>
+        <form asp-action="Novo">
+            <input type="hidden" asp-for="Id">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="styled-input wide">
+                        <input type="text" id="nomeSolicitante" asp-for="Nome" required>
+                        <label>Nome</label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="styled-input wide">
+                        <select id="unidadeDeMedida" asp-for="UnidadeDeMedida" required>
+                            @{
+                                @foreach (var unidadeDescription in EnumExtension.GetEnumDescriptionsWithNull())
+                                {
+                                    if (Model.UnidadeDeMedida.GetDescription() == unidadeDescription)
+                                    {
+                                        <option selected value="@unidadeDescription">@unidadeDescription</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="@unidadeDescription">@unidadeDescription</option>
+                                    }
+                                }
+                            }
+                        </select>
+                        <label for="status">Unidade de Medida</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="styled-input wide">
+                        <input type="text" id="cpfCnpjSolicitante" asp-for="Descricao" required>
+                        <label>Descrição</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="styled-input wide">
+                        <input type="text" id="cep" asp-for="Quantidade" required>
+                        <label>Quantidade Única</label>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="styled-input wide">
+                        <input type="text" id="bairro" asp-for="QuantidadeTotal" required>
+                        <label>Quantidade Total</label>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-dark defaultButton">Salvar</button>
+        </form>
+    </div>
+</body>
+</html>
