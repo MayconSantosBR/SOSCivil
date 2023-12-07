@@ -31,10 +31,11 @@ namespace SosCivil.Api.Repositories
             return await DbSet.AsNoTracking().ToListAsync();
         }
 
-        public virtual async Task CreateAsync(TEntity entity)
+        public virtual async Task<TEntity> CreateAsync(TEntity entity)
         {
             DbSet.Add(entity);
             await SaveChanges();
+            return entity;
         }
 
         public virtual async Task Update(TEntity entity)
