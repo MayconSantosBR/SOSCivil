@@ -4,6 +4,7 @@ using SosCivil.Api.Data.Entities;
 using SosCivil.Api.Models.Dtos.Controllers;
 using SosCivil.Api.Repositories.Interfaces;
 using SosCivil.Api.Services.Base;
+using SosCivil.Api.Services.Interfaces;
 
 namespace SosCivil.Api.Services
 {

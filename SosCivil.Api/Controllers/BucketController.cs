@@ -18,11 +18,11 @@ namespace SosCivil.Api.Controllers
 
         [Route("bucket/{folder}")]
         [HttpPost]
-        public async Task<ActionResult> UploadFile([FromRoute] string folder, [FromBody] IFormFile file)
+        public async Task<ActionResult> UploadFile(string folder, IFormFile file)
         {
             try
             {
-                return ValidateServiceResponse(await _bucketService.UploadFileAsync(folder, file.OpenReadStream(), file.ContentType));
+                return ValidateServiceResponse(await _bucketService.UploadFileAsync(folder, file));
             }
             catch (Exception e)
             {

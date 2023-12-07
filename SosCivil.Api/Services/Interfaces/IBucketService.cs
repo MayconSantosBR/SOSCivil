@@ -6,6 +6,6 @@ namespace SosCivil.Api.Services.Interfaces
 {
     public interface IBucketService
     {
-        Task<Result<PutObjectResponse>> UploadFileAsync(string folder, Stream file, string contentType);
+        Task<Result<object>> UploadFileAsync(string folder, IFormFile file);
     }
 }

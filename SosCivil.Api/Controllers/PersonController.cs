@@ -1,9 +1,11 @@
 ﻿using FluentResults;
 using Microsoft.AspNetCore.Mvc;
 using SosCivil.Api.Controllers.Base;
+using SosCivil.Api.Data.Entities;
 using SosCivil.Api.Models.Dtos.Controllers;
-using SosCivil.Api.Services;
+using SosCivil.Api.Repositories.Interfaces;
 using SosCivil.Api.Services.Interfaces;
+using ZstdSharp.Unsafe;
 
 namespace SosCivil.Api.Controllers
 {
@@ -41,13 +43,13 @@ namespace SosCivil.Api.Controllers
         {
             try
             {
-                var personEntity = await _personService.CreateAndReturn(person);
+                var personEntity = await _personService.MapAndCreateAsync(person);
                 var userDto = new UserDto
                 {
                     Username = person.Name,
                     Password = token
                 };
-                var userResponse = ValidateServiceResponse(await _userService.CreateAsync(userDto, email, personEntity));
+                var userResponse = ValidateServiceResponse(await _userService.CreateAsync(userDto, email, personEntity.Value));
                 return userResponse;
             }
             catch (Exception e)

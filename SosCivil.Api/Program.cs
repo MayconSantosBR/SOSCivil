@@ -2,6 +2,7 @@ using Amazon;
 using Amazon.S3;
 using DevIO.App.Configurations;
 using Microsoft.EntityFrameworkCore;
+using MongoDB.Driver;
 using Newtonsoft.Json.Serialization;
 using SosCivil.Api.Data.Contexts;
 using SosCivil.Api.Models.AutoMapper;
@@ -23,13 +24,16 @@ builder.Services.AddDbContext<MainContext>(options => options.UseNpgsql(appConfi
 builder.Services.ResolveDependencies();
 
 builder.Services.AddScoped<IAmazonS3>(provider => new AmazonS3Client(
-    appConfig.GetSetting("ConnectionStrings:Amazon:AccessKey"),
-    appConfig.GetSetting("ConnectionStrings:Amazon:SecretKey"),
+    appConfig.GetSetting("Amazon:AccessKey"),
+    appConfig.GetSetting("Amazon:SecretKey"),
     RegionEndpoint.USEast1)
 );
 
-
 builder.Services.AddScoped<IBucketService, BucketService>();
+
+builder.Services.AddScoped<IMongoClient>(c => { 
+    return new MongoClient(appConfig.GetSetting("ConnectionStrings:Mongo")); 
+});
 
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddScoped<ICobradeService, CobradeService>();

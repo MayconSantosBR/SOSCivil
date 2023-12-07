@@ -4,6 +4,7 @@ using FluentResults;
 using SosCivil.Api.Services.Interfaces;
 using SosCivil.Core.Data.Enums;
 using SosCivil.Core.Extensions;
+using System.Net.Http.Headers;
 
 namespace SosCivil.Api.Services
 {
@@ -18,19 +19,41 @@ namespace SosCivil.Api.Services
             _amazonS3 = amazonS3;
         }
 
-        public async Task<Result<PutObjectResponse>> UploadFileAsync(string folder, Stream file, string contentType)
+        public async Task<Result<object>> UploadFileAsync(string folder, IFormFile file)
         {
-            var key = $"{folder}/{Guid.NewGuid()}.jpg";
+            var extension = GetFileExtension(file) ?? throw new Exception("File extension wasn't identified");
+
+            var key = $"{folder}/{Guid.NewGuid()}.{extension}";
 
             var request = new PutObjectRequest
             {
-                BucketName = _configuration.GetValue<string>("ConnectionStrings:Amazon:BucketName"),
+                BucketName = _configuration.GetValue<string>("Amazon:BucketName"),
                 Key = key,
-                InputStream = file,
-                ContentType = contentType
+                InputStream = file.OpenReadStream(),
+                ContentType = file.ContentType,
             };
 
-            return Result.Ok(await _amazonS3.PutObjectAsync(request));
+            await _amazonS3.PutObjectAsync(request);
+
+            return Result.Ok<object>(new { url = $"{_configuration.GetValue<string>("Amazon:Url")}{key}" });
+        }
+
+        private string? GetFileExtension(IFormFile file)
+        {
+            if (file == null)
+                return null;
+
+            var fileName = file.FileName;
+            var contentDisposition = ContentDispositionHeaderValue.Parse(file.ContentDisposition);
+
+            if (contentDisposition.DispositionType.Equals("attachment", StringComparison.OrdinalIgnoreCase))
+            {
+                var fileExtension = Path.GetExtension(fileName);
+                return fileExtension;
+            }else
+            {
+                return fileName.LastIndexOf('.') > 0 ? fileName.Substring(fileName.LastIndexOf('.') + 1) : null;
+            }
         }
     }
 }
