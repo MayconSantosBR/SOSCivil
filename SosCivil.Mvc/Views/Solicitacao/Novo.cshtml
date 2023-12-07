@@ -62,18 +62,18 @@
                 <div class="col-md-6 col-sm-12">
                     <div class="styled-input wide">
                         <select id="status" asp-for="Status" required>
-                            @{                        
-                                if (ViewContext.HttpContext.Request.Path != "/Solicitacao/Novo")
+                            @{
+                                @foreach (var statusDescription in EnumExtension.GetEnumDescriptionsWithNull())
                                 {
-                                    <option selected value="@Model.Status.GetDescription()">@Model.Status.GetDescription()</option>
-                                }
-                                else
-                                {
-                                    @foreach (var statusDescription in EnumExtension.GetEnumDescriptionsWithNull())
+                                    if (Model.Status.GetDescription() == statusDescription)
+                                    {
+                                        <option selected value="@statusDescription">@statusDescription</option>
+                                    }
+                                    else
                                     {
                                         <option value="@statusDescription">@statusDescription</option>
                                     }
-                                }         
+                                }
                             }
                         </select>
                         <label for="status">Status</label>

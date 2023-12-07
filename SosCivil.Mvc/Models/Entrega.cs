@@ -7,7 +7,6 @@ namespace SosCivil.Mvc.Models
         public int Id { get; set; }
         public Solicitacao Solicitacao { get; set; }
         public StatusEnum Status { get; set; }
-        public DateTime DataSolicitada { get; set; }
         public DateTime DataEntrega { get; set; }
     }
 }

@@ -49,7 +49,7 @@ namespace SosCivil.Mvc.Controllers
         }
 
         [HttpPost]
-        public IActionResult Novo(Solicitacao model)
+        public IActionResult Novo(Suprimento model)
         {
             return View(model);
         }

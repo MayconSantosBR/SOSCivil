@@ -24,17 +24,17 @@
                     <div class="styled-input wide">
                         <select id="unidadeDeMedida" asp-for="UnidadeDeMedida" required>
                             @{
-                                if (ViewContext.HttpContext.Request.Path != "/Suprimento/Novo")
+                                @foreach (var unidadeDescription in EnumExtension.GetEnumDescriptionsWithNull())
                                 {
-                                    <option selected value="@Model.UnidadeDeMedida.GetDescription()">@Model.UnidadeDeMedida.GetDescription()</option>
-                                }
-                                else
-                                {
-                                    @foreach (var unidadeDescription in EnumExtension.GetEnumDescriptionsWithNull())
+                                    if (Model.UnidadeDeMedida.GetDescription() == unidadeDescription)
+                                    {
+                                        <option selected value="@unidadeDescription">@unidadeDescription</option>
+                                    }
+                                    else
                                     {
                                         <option value="@unidadeDescription">@unidadeDescription</option>
                                     }
-                                }    
+                                }
                             }
                         </select>
                         <label for="status">Unidade de Medida</label>
