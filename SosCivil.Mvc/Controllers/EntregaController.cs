@@ -1,164 +1,62 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SosCivil.Api.Data.Enums;
 using SosCivil.Mvc.Models;
+using SosCivil.Mvc.Service.Interfaces;
 
 namespace SosCivil.Mvc.Controllers
 {
     public class EntregaController : Controller
     {
-        public IActionResult Index()
+        private readonly IRequestService _requestService;
+
+        public EntregaController(IRequestService requestService)
         {
-            var entregas = new List<Entrega>
-            {
-                new Entrega
-                {
-                    Id = 1,
-                    Solicitacao = new Solicitacao
-                    {
-                        Id = 1,
-                        NomeSolicitante = "João da Silva",
-                        CpfCnpjSolicitante = "123.456.789-00",
-                        Celular = "(11) 9 9999-9999",
-                        Rua = "Rua dos Bobos",
-                        Bairro = "Bairro dos Bobos",
-                        Cep = "99999-999",
-                        Status = StatusEnum.Delivered,
-                        DataSolicitacao = DateTime.Now,
-                        Suprimento = new Suprimento
-                        {
-                            Id = 1,
-                            Nome = "Água"
-                        }
-                    },
-                    Status = StatusEnum.Delivered,
-                    DataEntrega = DateTime.Now
-                },
-                new Entrega
-                {
-                    Id = 2,
-                    Solicitacao = new Solicitacao
-                    {
-                        Id = 2,
-                        NomeSolicitante = "Maria da Silva",
-                        CpfCnpjSolicitante = "123.456.789-00",
-                        Celular = "(11) 9 9999-9999",
-                        Rua = "Rua dos Bobos",
-                        Bairro = "Bairro dos Bobos",
-                        Cep = "99999-999",
-                        Status = StatusEnum.Shipping,
-                        DataSolicitacao = DateTime.Now,
-                        Suprimento = new Suprimento
-                        {
-                            Id = 2,
-                            Nome = "Alimento"
-                        }
-                    },
-                    Status = StatusEnum.Shipping,
-                    DataEntrega = DateTime.Now
-                },
-                new Entrega
-                {
-                    Id = 3,
-                    Solicitacao = new Solicitacao
-                    {
-                        Id = 3,
-                        NomeSolicitante = "José da Silva",
-                        CpfCnpjSolicitante = "123.456.789-00",
-                        Celular = "(11) 9 9999-9999",
-                        Rua = "Rua dos Bobos",
-                        Bairro = "Bairro dos Bobos",
-                        Cep = "99999-999",
-                        Status = StatusEnum.Approved,
-                        DataSolicitacao = DateTime.Now,
-                        Suprimento = new Suprimento
-                        {
-                            Id = 3,
-                            Nome = "Remédio"
-                        }
-                    },
-                    Status = StatusEnum.Approved,
-                    DataEntrega = DateTime.Now
-                }
-            };
-            ViewData["Entregas"] = entregas;
+            _requestService = requestService;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var entrega = await _requestService.PegarEntregasAssincrono();
+            if (entrega.FirstOrDefault() != null && entrega.Any())
+                entrega.FirstOrDefault().Solicitacao = new Solicitacao() { Id = 1};
+            ViewData["Entregas"] = entrega;
             return View();
         }
 
         public IActionResult Novo()
         {
+            ViewData["Acao"] = "Novo";
+
             var model = new Entrega();
-            ViewData["Solicitacoes"] = new List<Solicitacao>
-            {
-                new Solicitacao
-                {
-                    Id = 1,
-                    NomeSolicitante = "João da Silva",
-                    CpfCnpjSolicitante = "123.456.789-00",
-                    Celular = "(11) 9 9999-9999",
-                    Rua = "Rua dos Bobos",
-                    Bairro = "Bairro dos Bobos",
-                    Cep = "99999-999",
-                    Status = StatusEnum.Delivered,
-                    DataSolicitacao = DateTime.Now,
-                    Suprimento = new Suprimento
-                    {
-                        Id = 1,
-                        Nome = "Água"
-                    }
-                },
-                new Solicitacao
-                {
-                    Id = 2,
-                    NomeSolicitante = "Maria da Silva",
-                    CpfCnpjSolicitante = "123.456.789-00",
-                    Celular = "(11) 9 9999-9999",
-                    Rua = "Rua dos Bobos",
-                    Bairro = "Bairro dos Bobos",
-                    Cep = "99999-999",
-                    Status = StatusEnum.Shipping,
-                    DataSolicitacao = DateTime.Now,
-                    Suprimento = new Suprimento
-                    {
-                        Id = 2,
-                        Nome = "Alimento"
-                    }
-                },
-            };
             return View(model);
         }
 
         [HttpPost]
-        public IActionResult Novo(Entrega model)
+        public async Task<IActionResult> Novo(Entrega model)
         {
-            return View(model);
+            await _requestService.CriarEntregaAssincrono(model);
+            return RedirectToAction("Index");
         }
 
-        public IActionResult Editar(long id)
+        public async Task<IActionResult> Editar(long id)
         {
-            var model = new Entrega
-            {
-                Id = 1,
-                Solicitacao = new Solicitacao
-                {
-                    Id = 1,
-                    NomeSolicitante = "João da Silva",
-                    CpfCnpjSolicitante = "123.456.789-00",
-                    Celular = "(11) 9 9999-9999",
-                    Rua = "Rua dos Bobos",
-                    Bairro = "Bairro dos Bobos",
-                    Cep = "99999-999",
-                    Status = StatusEnum.Delivered,
-                    DataSolicitacao = DateTime.Now,
-                    Suprimento = new Suprimento
-                    {
-                        Id = 1,
-                        Nome = "Água"
-                    }
-                },
-                Status = StatusEnum.Delivered,
-                DataEntrega = DateTime.Now
-            };
+            ViewData["Acao"] = "EditarItem";
+
+            var model = await _requestService.PegarEntregaPorIdAssincrono(id);
             return View("Novo", model);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditarItem(Entrega model)
+        {
+            await _requestService.EditarEntregaAssincrono(model);
+            return RedirectToAction("Index");
+        }
+
+        public async Task<IActionResult> Excluir(long id)
+        {
+            await _requestService.ExcluirEntregaAssincrono(id);
+            return RedirectToAction("Index");
         }
     }
 }

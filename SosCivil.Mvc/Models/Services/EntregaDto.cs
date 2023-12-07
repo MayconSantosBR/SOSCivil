@@ -1,12 +1,10 @@
 ﻿using Newtonsoft.Json;
 using SosCivil.Api.Data.Enums;
 
-namespace SosCivil.Mvc.Models
+namespace SosCivil.Mvc.Models.Services
 {
-    public class Entrega
+    public class EntregaDto
     {
-        [JsonProperty("id")]
-        public int Id { get; set; }
         [JsonProperty("occurrence")]
         public Solicitacao Solicitacao { get; set; }
         [JsonProperty("status")]
