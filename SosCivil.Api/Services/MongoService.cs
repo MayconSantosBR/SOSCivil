@@ -1,5 +1,6 @@
 ﻿using MongoDB.Driver;
 using SosCivil.Api.Services.Interfaces;
+using System.Linq.Expressions;
 
 namespace SosCivil.Api.Services
 {
@@ -12,12 +13,12 @@ namespace SosCivil.Api.Services
             _mongoClient = mongoClient;
         }
 
-        public async Task<T> GetOneAsync<T>(string collectionName, FilterDefinition<T> filter)
+        public async Task<T> GetOneAsync<T>(string collectionName, Expression<Func<T, bool>> filter)
         {
             return await GetCollection<T>(collectionName).Find(filter).FirstOrDefaultAsync();
         }
 
-        public async Task<List<T>> GetAllAsync<T>(string collectionName, FilterDefinition<T> filter)
+        public async Task<List<T>> GetAllAsync<T>(string collectionName, Expression<Func<T, bool>> filter)
         {
             return await GetCollection<T>(collectionName).Find(filter).ToListAsync();
         }
@@ -28,16 +29,20 @@ namespace SosCivil.Api.Services
             return entity;
         }
 
-        public async Task<T> UpdateAsync<T>(string collectionName, FilterDefinition<T> filter, UpdateDefinition<T> update)
+        public async Task<T> UpdateAsync<T>(string collectionName, Expression<Func<T, bool>> filter, UpdateDefinition<T> update)
         {
             return await GetCollection<T>(collectionName).FindOneAndUpdateAsync(filter, update);
         }
 
-        public async Task<T> DeleteAsync<T>(string collectionName, FilterDefinition<T> filter)
+        public async Task<T> ReplaceAsync<T>(string collectionName, Expression<Func<T, bool>> filter, T entity)
+        {
+            return await GetCollection<T>(collectionName).FindOneAndReplaceAsync(filter, entity);
+        }
+
+        public async Task<T> DeleteAsync<T>(string collectionName, Expression<Func<T, bool>> filter)
         {
             return await GetCollection<T>(collectionName).FindOneAndDeleteAsync(filter);
         }
-
 
         private IMongoCollection<T> GetCollection<T>(string collectionName)
         {

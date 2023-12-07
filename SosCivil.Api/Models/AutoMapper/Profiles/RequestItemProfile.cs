@@ -1,15 +1,14 @@
 ﻿using AutoMapper;
 using SosCivil.Api.Data.Entities;
-using SosCivil.Api.Data.Entities.Mongo;
 using SosCivil.Api.Models.Dtos.Controllers;
 
 namespace SosCivil.Api.Models.AutoMapper.Profiles
 {
-    public class OccurrenceProfile : Profile
+    public class RequestItemProfile : Profile
     {
-        public OccurrenceProfile()
+        public RequestItemProfile()
         {
-            CreateMap<OccurrenceDto, Occurrence>()
+            CreateMap<RequestItemDto, RequestItem>()
                 .ReverseMap();
         }
     }

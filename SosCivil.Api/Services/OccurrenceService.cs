@@ -27,17 +27,42 @@ namespace SosCivil.Api.Services
         public override async Task<Result<Occurrence>> MapAndCreateAsync<M>(M dto)
         {
             var entity = _mapper.Map<OccurrenceDto, Occurrence>(dto as OccurrenceDto);
-            var result = await CreateAsync(entity);
-            entity = result.Value;
+            entity = await _repository.CreateAsync(entity);
 
 
             if ((dto as OccurrenceDto).Documents != null || (dto as OccurrenceDto).Documents.Count > 0)
             {
-                var mongoEntity = _mapper.Map<Occurrence, OccurrenceRegister>(entity);
+                var mongoEntity = new OccurrenceRegister
+                {
+                    OccurrenceId = entity.Id,
+                    Documents = (dto as OccurrenceDto).Documents
+                };
+
                 await _mongoService.CreateAsync(_collectionName, mongoEntity);
             }
 
-            return result;
+            return Result.Ok();
+        }
+
+        public async override Task<Result<Occurrence>> MapAndUpdateAsync<M>(long id, M dto)
+        {
+            await base.MapAndUpdateAsync(id, dto);
+
+            if ((dto as OccurrenceDto).Documents != null || (dto as OccurrenceDto).Documents.Count > 0)
+            {
+                var mongoEntity = await _mongoService.GetOneAsync<OccurrenceRegister>(_collectionName, c => c.OccurrenceId == id);
+                mongoEntity.Documents = (dto as OccurrenceDto).Documents;
+                await _mongoService.ReplaceAsync<OccurrenceRegister>(_collectionName, c => c.OccurrenceId == id, mongoEntity);
+            }
+
+            return Result.Ok();
+        }
+
+        public async override Task<Result<Occurrence>> RemoveAsync(long id)
+        {
+            await base.RemoveAsync(id);
+            await _mongoService.DeleteAsync<OccurrenceRegister>(_collectionName, c => c.OccurrenceId == id);
+            return Result.Ok();
         }
     }
 }
