@@ -60,6 +60,20 @@ namespace SosCivil.Api.Controllers
             }
         }
 
+        [Route("ocorrences/{id}/documents")]
+        [HttpGet]
+        public async Task<ActionResult> GetDocuments([FromRoute] long id)
+        {
+            try
+            {
+                return ValidateServiceResponse(await _occurrenceService.GetDocumentByIdAsync(id));
+            }
+            catch (Exception e)
+            {
+                return BadRequest(Result.Fail(e.Message));
+            }
+        }
+
         [Route("occurrences/{id}")]
         [HttpPut]
         public async Task<ActionResult> Update(long id, [FromBody] OccurrenceDto occurrence)

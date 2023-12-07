@@ -64,5 +64,15 @@ namespace SosCivil.Api.Services
             await _mongoService.DeleteAsync<OccurrenceRegister>(_collectionName, c => c.OccurrenceId == id);
             return Result.Ok();
         }
+
+        public async Task<Result<List<OccurrenceDocuments>?>> GetDocumentByIdAsync(long id)
+        {
+            var mongoEntity = await _mongoService.GetOneAsync<OccurrenceRegister>(_collectionName, c => c.OccurrenceId == id);
+
+            if (mongoEntity == null)
+                return Result.Fail<List<OccurrenceDocuments>?>("No documents for this occurrence");
+
+            return Result.Ok(mongoEntity.Documents);
+        }
     }
 }
